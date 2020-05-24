@@ -1,9 +1,9 @@
 <?php
   session_start();
-  require_once 'C:\xampp\htdocs\DBMS\database.php';
+  require_once 'C:\xampp\htdocs\GitHub\Insurance-Management-System\DBMS\database.php';
   if(!isset($_SESSION['sessionId'])) {
-    if(!($_SERVER['REQUEST_URI'] == '/DBMS/Agent/Agent-Login.php' || $_SERVER['REQUEST_URI'] == '/DBMS/Agent/Agent-Register.php')) {
-    header('Location: http://localhost/DBMS');
+    if(!($_SERVER['REQUEST_URI'] == '/GitHub/Insurance-Management-System/DBMS/Agent/Agent-Login.php' || $_SERVER['REQUEST_URI'] == '/GitHub/Insurance-Management-System/DBMS/Agent/Agent-Register.php')) {
+    header('Location: http://localhost/GitHub/Insurance-Management-System/DBMS');
     }
   }
  ?>
