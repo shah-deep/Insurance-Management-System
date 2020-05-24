@@ -23,7 +23,12 @@ require_once '../header.php';
       <h2>Personal Details:</h2>
         <input type="number" name="Height" placeholder="Height">
         <input type="number" name="Weight" placeholder="Weight">
-        <input type="text" name="Gender" placeholder="Gender: M/F">
+        <select name="Gender" required>
+             <option value="" selected disabled>Select gender</option>
+             <option value="M">Male</option>
+             <option value="F">Female</option>
+             <option value="O">Other</option>
+        </select>
         <input type="text" name="Occupation" placeholder="Occupation">
         <input type="text" name="Edu_ql" placeholder="Education Qualification">
 
