@@ -42,8 +42,6 @@ if (isset($_POST['submit'])) {
     } elseif ($Policy_no<=0 || $Agency_code<=0 || $Plan_no<=0) {
         header("Location: ../ManagePolicy/AddNewPolicy.php?error=invalidCode");
         exit();
-    } elseif ($Gender != 'M' || $Gender != 'F' || $Gender != 'm' || $Gender != 'f') {
-        $Gender = null;
     } else {
         $sql = "SELECT * FROM Policy_holder WHERE Policy_no = ?";
         $stmt = mysqli_stmt_init($conn);
