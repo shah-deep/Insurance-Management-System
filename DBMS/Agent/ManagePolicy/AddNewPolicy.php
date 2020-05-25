@@ -1,7 +1,8 @@
 <?php
 require_once '../header.php';
  ?>
-<section>
+
+<h1>Add New Policy</h1>
   <div class="">
     <h2>Holder's Details:</h2>
     <form class="" action="../includes/AddNewPolicy-inc.php" method="post">
@@ -51,7 +52,6 @@ require_once '../header.php';
 
     </form>
   </div>
-</section>
 
 <?php
 require_once '../footer.php';

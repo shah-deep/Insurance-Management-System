@@ -3,9 +3,7 @@ require_once 'header.php';
  ?>
 
 <div>
-
-<h1>Register</h1>
-
+<h1>Agent Sign-Up</h1>
 
 <form class="" action="includes/Agent-register-inc.php" method="post">
   <input type="number" name="Agency_code" placeholder="Agency_code">
