@@ -1,8 +1,9 @@
 <?php
+session_start();
 if(isset($_SESSION['sessionId'])) {
-  //$_SESSION['sessionId'] = NULL;
   session_unset();
   session_destroy();
+  session_set_cookie_params(0);
 }
  ?>
 <html lang="en" dir="ltr">

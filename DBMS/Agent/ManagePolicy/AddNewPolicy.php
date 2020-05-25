@@ -36,7 +36,6 @@ require_once '../header.php';
       <h2>Policy Details:</h2>
         <input type="number" name="Policy_no" placeholder="Policy No.">
         <input type="number" name="Plan_no" placeholder="Plan No."> <br> <br>
-        <input type="number" name="Agency_code" placeholder="Agency Code">
         <input type="number" name="Premium" placeholder="Premium">
         <input type="number" name="Commission" placeholder="Commission">
         <input type="number" name="Term" placeholder="Term">

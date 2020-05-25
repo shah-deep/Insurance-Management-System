@@ -2,7 +2,7 @@
 
 if (isset($_POST['submit'])) {
     require '../../database.php';
-
+    session_start();
     $Policy_no = $_POST['Policy_no']; //Not Null
 
     // Holder Details
@@ -25,7 +25,7 @@ if (isset($_POST['submit'])) {
 
     //  Policy Details
     $Plan_no = $_POST['Plan_no']; //Not Null
-    $Agency_code = $_POST['Agency_code'];   //Not Null
+    $Agency_code = $_SESSION['sessionId'];   //$_POST['Agency_code'];   //Not Null
     $Premium = $_POST['Premium'];
     $Commission = $_POST['Commission'];
     $Term = $_POST['Term'];
