@@ -1,4 +1,5 @@
 <?php
+require_once 'includes/defaultAdmin.php';
 require_once 'header.php';
  ?>
 

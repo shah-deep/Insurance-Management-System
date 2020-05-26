@@ -54,7 +54,7 @@ if (isset($_POST['submit'])) {
             mysqli_stmt_bind_param($stmt,"iisisisss",$Admin_id,$Branch_id,$Name,$Mobile_no,$Email_id,$DOB,$Designation,$Address,$hashedPass);
             mysqli_stmt_execute($stmt);
             mysqli_stmt_store_result($stmt);
-            header("Location: ../Admin-Login.php?success=registered");
+            header("Location: ../Admin-Register.php?success=registered");
             exit();
           }
       }

@@ -14,7 +14,10 @@ if (isset($_POST['submit'])) {
   $Designation = $_POST['Designation'];
   $Address = $_POST['Address'];
 
-  if (empty($Agency_code) || empty($password) || empty($confirmPassword) || empty($Name) || empty($Branch_id)) {
+  session_start();
+  $Admin_id = $_SESSION['sessionId2'];
+
+  if (empty($Agency_code) || empty($password) || empty($confirmPassword) || empty($Name) || empty($Branch_id) || empty($Admin_id)) {
     header("Location: ../Agent-Register.php?error=emptyfields");
     exit();
   } elseif ($Agency_code<=0) {
@@ -54,7 +57,25 @@ if (isset($_POST['submit'])) {
             mysqli_stmt_bind_param($stmt,"iisisisss",$Agency_code,$Branch_id,$Name,$Mobile_no,$Email_id,$DOB,$Designation,$Address,$hashedPass);
             mysqli_stmt_execute($stmt);
             mysqli_stmt_store_result($stmt);
-            header("Location: ../Agent-Login.php?success=registered");
+            $suceess1 = true;
+          }
+
+          $sql = "INSERT INTO Adm_Agent(Admin_id,Agency_code) VALUES (?,?)";
+          $stmt = mysqli_stmt_init($conn);
+          if(!mysqli_stmt_prepare($stmt, $sql)) {
+            header("Location: ../Agent-Register.php?error=sqlerror3");
+            exit();
+          } else {
+            mysqli_stmt_bind_param($stmt,"ii",$Admin_id,$Agency_code);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_store_result($stmt);
+            $suceess2 = true;
+          }
+          if ($suceess1 && $suceess2) {
+              header("Location: ../Agent-Register.php?success=registered");
+              exit();
+          } else {
+            header("Location: ../Agent-Register.php?success=register_Failed");
             exit();
           }
       }
