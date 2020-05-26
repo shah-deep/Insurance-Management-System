@@ -10,11 +10,9 @@ require_once 'header.php';
   <input type="password" name="password" placeholder="Password">
   <button type="submit" name="submit">Login</button>
 </form>
-<br />
-<p>
-  No account? <a href="Agent-Register.php">Register Here!</a>
-</p>
-</div>
 
+</div>
+<br><br>
+<button type="button" name="Home"> <a href="../index.php">Home</a> </button>
 </body>
 </html>

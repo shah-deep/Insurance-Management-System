@@ -8,7 +8,7 @@ require_once '../header.php';
     <form class="" action="../includes/AddNewPolicy-inc.php" method="post">
       <input type="text" name="Name" placeholder="Name">
       <input type="email" name="Email_id" placeholder="Email_id">
-      <p> Date of Birth:</p>
+      <h7> Date of Birth:</h7>
       <input type="date" name="DOB" placeholder="DOB">
 <!-- Age     <input type="" name="" placeholder="Age">    -->
       <p> Address: </p>
@@ -41,12 +41,12 @@ require_once '../header.php';
         <input type="number" name="Term" placeholder="Term">
         <input type="number" name="PPT" placeholder="Premium Paying Term">
         <input type="number" name="SA" placeholder="Sum Assured">
-        <input type="text" name="Mode" placeholder="Mode">
-        <p> Date of Commencement:</p>
+        <input type="text" name="Mode" placeholder="Mode"><br>
+        <h7> Date of Commencement:</h7>
         <input type="date" name="DOC" placeholder="Date Of Commencement">
-        <p> First Unpaid Payment:</p>
+        <h7> First Unpaid Payment:</h7>
         <input type="date" name="FUP" placeholder="First Unpaid Payment">
-        <br> <br> <br>
+        <br> <br>
         <button type="submit" name="submit">Add Policy</button>
 
     </form>
