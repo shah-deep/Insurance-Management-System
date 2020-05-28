@@ -7,13 +7,13 @@ if (isset($_POST['submit'])) {
     $password = $_POST['password'];
 
     if (empty($Admin_id) || empty($password)) {
-        header("Location: ../Admin-Login.php?error=emptyfields");
+        header("Location: ../Admin-Login.php");
         exit();
     } else {
         $sql = "SELECT * FROM Admin WHERE Admin_id = ?";
         $stmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($stmt, $sql)) {
-            header("Location: ../Agent-Login.php?error=sqlerror");
+            header("Location: ../Admin-Login.php");
             exit();
         } else {
             mysqli_stmt_bind_param($stmt, "i", $Admin_id);
@@ -24,7 +24,7 @@ if (isset($_POST['submit'])) {
                 $passcheck = password_verify($password, $row['Password']);
 
                 if ($passcheck==false) {
-                    header("Location: ../Agent-Login.php?error=WrongPass");
+                    header("Location: ../Admin-Login.php");
                     exit();
                 } elseif ($passcheck==true) {
                     session_start();
@@ -33,16 +33,16 @@ if (isset($_POST['submit'])) {
                     header("Location: ../AdminMenu.php?success=loggedin");
                     exit();
                 } else {
-                    header("Location: ../Agent-Login.php?error=NoUser1");
+                    header("Location: ../Admin-Login.php");
                     exit();
                 }
             } else {
-                header("Location: ../Agent-Login.php?error=NoUser2");
+                header("Location: ../Admin-Login.php");
                 exit();
             }
         }
     }
 } else {
-    header("Location: ../Agent/Agent-Login.php?error=AccessForbidden");
+    header("Location: ../Admin/Admin-Login.php?error=AccessForbidden");
     exit();
 }
