@@ -46,7 +46,7 @@ if (isset($_POST['submit'])) {
         header("Location: ../Agent-Register.php?error=usernametaken");
         exit();
       } else {
-          $sql = "INSERT INTO agent(Agency_code, Branch_id, Name, Mobile_no, Email_id, DOB, Designation, Address, Password) VALUES (?,?,?,?,?,?,?,?,?)";
+          $sql = "INSERT INTO agent(Agency_code, Branch_id, Admin_id, Name, Mobile_no, Email_id, DOB, Designation, Address, Password) VALUES (?,?,?,?,?,?,?,?,?)";
           $stmt = mysqli_stmt_init($conn);
           if(!mysqli_stmt_prepare($stmt, $sql)) {
             header("Location: ../Agent-Register.php?error=sqlerror2");
@@ -54,28 +54,10 @@ if (isset($_POST['submit'])) {
           } else {
             $hashedPass = password_hash($password, PASSWORD_DEFAULT);
 
-            mysqli_stmt_bind_param($stmt,"iisisisss",$Agency_code,$Branch_id,$Name,$Mobile_no,$Email_id,$DOB,$Designation,$Address,$hashedPass);
+            mysqli_stmt_bind_param($stmt,"iiisisisss",$Agency_code,$Branch_id,$Admin_id,$Name,$Mobile_no,$Email_id,$DOB,$Designation,$Address,$hashedPass);
             mysqli_stmt_execute($stmt);
             mysqli_stmt_store_result($stmt);
-            $suceess1 = true;
-          }
-
-          $sql = "INSERT INTO Adm_Agent(Admin_id,Agency_code) VALUES (?,?)";
-          $stmt = mysqli_stmt_init($conn);
-          if(!mysqli_stmt_prepare($stmt, $sql)) {
-            header("Location: ../Agent-Register.php?error=sqlerror3");
-            exit();
-          } else {
-            mysqli_stmt_bind_param($stmt,"ii",$Admin_id,$Agency_code);
-            mysqli_stmt_execute($stmt);
-            mysqli_stmt_store_result($stmt);
-            $suceess2 = true;
-          }
-          if ($suceess1 && $suceess2) {
-              header("Location: ../Agent-Register.php?success=registered");
-              exit();
-          } else {
-            header("Location: ../Agent-Register.php?success=register_Failed");
+            header("Location: ../Agent-Register.php?success=registered");
             exit();
           }
       }

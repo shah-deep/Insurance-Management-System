@@ -36,7 +36,6 @@ if (isset($_POST['submit'])) {
     $FUP = $_POST['FUP'];
 
     if (empty($Policy_no) || empty($Name) || empty($Plan_no) || empty($Agency_code)) {
-        //  echo $Policy_no," ",$Name," ",$Plan_no," ",$Agency_code," ",$_SESSION['sessionId'];
         header("Location: ../ManagePolicy/AddNewPolicy.php?error=emptyfields");
         exit();
     } elseif ($Policy_no<=0 || $Agency_code<=0 || $Plan_no<=0) {
@@ -97,3 +96,4 @@ if (isset($_POST['submit'])) {
         mysqli_close($conn);
     }
 }
+?>
