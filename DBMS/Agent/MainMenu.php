@@ -13,7 +13,7 @@ require_once 'header.php';
       <li>
       <a href="PolicyOptions/CommissionReports.php"> Commission Reports </a> </li>
       <li>
-      <a href=""> Business Reports </a></li>
+      <a href="PolicyOptions/BusinessReport.php"> Business Reports </a></li>
       <li>
       <a href="PremiumPaymentRecord/PremiumPaymentRecord.php"> Premium Payment Record </a> </li>
   </ol>

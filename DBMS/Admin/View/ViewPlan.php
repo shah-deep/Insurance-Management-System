@@ -4,7 +4,7 @@ require '../../database.php';
  ?>
 
 <div class="">
-  <h1> Plan Presentation </h1>
+  <h1> Plan Details </h1>
   <table border="1">
     <tr>
       <th>  Plan_no</th>
@@ -15,7 +15,6 @@ require '../../database.php';
       <th>  min_age</th>
       <th>  max_age</th>
       <th>  MODE</th>
-      <th>  Type_term</th>
       <th>  Term</th>
       <th>  PPT   </th>
     </tr>
@@ -40,7 +39,6 @@ require '../../database.php';
                    if($row['MODE_MONTHLY']==1){echo 'Monthly |';}
                    if($row['MODE_SINGLE']==1){echo 'Single';}
                    ?></td>
-        <td><?php echo $row['Type_term'] ?>  </td>
         <td><?php echo $row['T1'],"-",$row['T2'],"-",$row['T3'],"-",$row['T4'] ?></td>
         <td><?php echo $row['P1'],"-",$row['P2'],"-",$row['P3'],"-",$row['P4'] ?></td>
       </tr>

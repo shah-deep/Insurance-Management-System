@@ -2,7 +2,7 @@
 
 if (isset($_POST['submit'])) {
     require '../../database.php';
-    
+
     $Policy_no = $_POST['Policy_no'];
     $Mode = $_POST['Mode'];
     $Amount = $_POST['Amount'];
@@ -27,7 +27,7 @@ if (isset($_POST['submit'])) {
             $result = mysqli_stmt_get_result($stmt);
             $rowCount = mysqli_stmt_num_rows($result);
             $row = mysqli_fetch_assoc($result);
-            if ($rowCount<0) {
+            if ($rowCount<1) {
                 header("Location: ../PremiumPaymentRecord/AddPaymentRecord.php?error=Policy_number_Not_Found");
                 exit();
             } elseif ($Amount < $row['Premium']) {

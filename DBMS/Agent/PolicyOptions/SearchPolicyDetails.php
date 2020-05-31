@@ -22,7 +22,6 @@ require '../../database.php';
       <th>  Agency_code </th>
       <th>  Premium </th>
       <th>  Date of Commencement </th>
-      <th>  Commission </th>
       <th>  Mode </th>
       <th>  Sum Assured</th>
       <th>  First Unpaid Payment </th>
@@ -56,7 +55,6 @@ require '../../database.php';
         <td><?php echo $row['Agency_code'] ?></td>
         <td><?php echo $row['Premium'] ?></td>
         <td><?php echo $row['DOC'] ?></td>
-        <td><?php echo $row['Commission'] ?></td>
         <td><?php echo $row['Mode'] ?></td>
         <td><?php echo $row['SA'] ?></td>
         <td><?php echo $row['FUP'] ?>  </td>

@@ -7,11 +7,11 @@ require_once '../header.php';
  <h1>Add New Plan</h1>
 
  <form class="" action="../includes/AddNewPlan-inc.php" method="post">
-   <input type="number" name="Plan_no" placeholder="Plan Number" required>
+   <input type="number" name="Plan_no" placeholder="Plan Number" min="100" max="999" required>
    <input type="text" name="Name" placeholder="Name" required>
    <input type="number" name="MMA" placeholder="Maximum Maturity Age" required>
    <input type="number" name="min_SA" placeholder="Minimum Sum Assured" required>
-   <input type="number" name="max_SA" placeholder="Maximum Sum Assured" required>
+   <input type="number" name="max_SA" placeholder="Maximum Sum Assured">
    <input type="number" name="min_age" placeholder="Minimum Age" required>
    <input type="number" name="max_age" placeholder="Maximum Age" required>
    <br><br>
@@ -37,7 +37,7 @@ require_once '../header.php';
      <tr>
        <td><h7> Term: </h7></td>
        <td><input type="number" name="T1" required></td>
-       <td><input type="number" name="T2"></td>
+       <td><input type="number" name="T2" required></td>
        <td><input type="number" name="T3"></td>
        <td><input type="number" name="T4"></td>
      </tr>
