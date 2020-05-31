@@ -51,7 +51,7 @@ if (isset($_POST['submit'])) {
           } else {
             $hashedPass = password_hash($password, PASSWORD_DEFAULT);
 
-            mysqli_stmt_bind_param($stmt,"iisisisss",$Admin_id,$Branch_id,$Name,$Mobile_no,$Email_id,$DOB,$Designation,$Address,$hashedPass);
+            mysqli_stmt_bind_param($stmt,"iisisssss",$Admin_id,$Branch_id,$Name,$Mobile_no,$Email_id,$DOB,$Designation,$Address,$hashedPass);
             mysqli_stmt_execute($stmt);
             mysqli_stmt_store_result($stmt);
             header("Location: ../Admin-Register.php?success=registered");

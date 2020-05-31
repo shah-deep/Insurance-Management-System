@@ -61,7 +61,7 @@ if (isset($_POST['submit'])) {
                   header("Location: ../ManagePolicy/AddNewPolicy.php?error=sqlerror3");
                   exit();
               } else {
-                  mysqli_stmt_bind_param($stmt, "iiiiiisiii", $Policy_no, $Plan_no, $Agency_code, $Premium, $DOC, $FUP, $Mode, $SA, $Term, $PPT);
+                  mysqli_stmt_bind_param($stmt, "iiiisssiii", $Policy_no, $Plan_no, $Agency_code, $Premium, $DOC, $FUP, $Mode, $SA, $Term, $PPT);
                   mysqli_stmt_execute($stmt);
                   mysqli_stmt_store_result($stmt);
                   $suceess1 = true;
@@ -73,7 +73,7 @@ if (isset($_POST['submit'])) {
                     header("Location: ../ManagePolicy/AddNewPolicy.php?error=sqlerror2");
                     exit();
                 } else {
-                    mysqli_stmt_bind_param($stmt, "isissssissssis", $Policy_no,$Name,$Mobile_no,$Email_id,$City,$Colony,$House_no,$Pincode,$Nominee_name,$Nominee_relation,$Gender,$Occupation,$DOB,$Edu_ql);
+                    mysqli_stmt_bind_param($stmt, "isissssissssss", $Policy_no,$Name,$Mobile_no,$Email_id,$City,$Colony,$House_no,$Pincode,$Nominee_name,$Nominee_relation,$Gender,$Occupation,$DOB,$Edu_ql);
                     mysqli_stmt_execute($stmt);
                     mysqli_stmt_store_result($stmt);
                     $suceess2 = true;

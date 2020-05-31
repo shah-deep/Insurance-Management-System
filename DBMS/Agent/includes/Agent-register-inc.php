@@ -54,7 +54,7 @@ if (isset($_POST['submit'])) {
           } else {
             $hashedPass = password_hash($password, PASSWORD_DEFAULT);
 
-            mysqli_stmt_bind_param($stmt,"iiisisisss",$Agency_code,$Admin_id,$Branch_id,$Name,$Mobile_no,$Email_id,$DOB,$Designation,$Address,$hashedPass);
+            mysqli_stmt_bind_param($stmt,"iiisisssss",$Agency_code,$Admin_id,$Branch_id,$Name,$Mobile_no,$Email_id,$DOB,$Designation,$Address,$hashedPass);
             mysqli_stmt_execute($stmt);
             //print_r($stmt);
             mysqli_stmt_store_result($stmt);
