@@ -33,7 +33,7 @@ require '../../database.php';
     <?php
     if(isset($_POST['search'])){
     $Value = $_POST['UserSearch'];
-    $sql = "SELECT * FROM Policy, Policy_holder WHERE Name = ?";
+    $sql = "SELECT * FROM Policy NATURAL join Policy_holder WHERE Name = ?";
     $stmt = mysqli_stmt_init($conn);
 
     if (mysqli_stmt_prepare($stmt, $sql)) {
