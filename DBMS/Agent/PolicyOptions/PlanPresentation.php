@@ -40,7 +40,6 @@ require '../../database.php';
                    if($row['MODE_MONTHLY']==1){echo 'Monthly |';}
                    if($row['MODE_SINGLE']==1){echo 'Single';}
                    ?></td>
-        <td><?php echo $row['Type_term'] ?>  </td>
         <td><?php echo $row['T1'],"-",$row['T2'],"-",$row['T3'],"-",$row['T4'] ?></td>
         <td><?php echo $row['P1'],"-",$row['P2'],"-",$row['P3'],"-",$row['P4'] ?></td>
       </tr>

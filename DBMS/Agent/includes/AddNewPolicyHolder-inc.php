@@ -39,6 +39,13 @@ if (isset($_POST['submit']) && isset($_SESSION['Policy_no'])) {
         header("Location: ../ManagePolicy/AddNewPolicyHolder.php?error=invalidCode");
         exit();
     } else {
+        $sql = "SELECT timestampdiff(YEAR,$DOB,curdate())";
+        $ag = mysqli_query($conn, $sql);
+        if ($ag==$Age) {
+          header("Location: ../ManagePolicy/AddNewPolicy.php?error=Invalid_Age");
+          exit();
+        }
+
         $sql = "SELECT * FROM Policy_holder WHERE Policy_no = ?";
         $stmt = mysqli_stmt_init($conn);
 
