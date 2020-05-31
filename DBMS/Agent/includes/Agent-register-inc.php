@@ -6,7 +6,6 @@ if (isset($_POST['submit'])) {
   $Agency_code = $_POST['Agency_code'];
   $password = $_POST['password'];
   $confirmPassword = $_POST['confirmPassword'];
-  $Branch_id = $_POST['Branch_id'];
   $Name = $_POST['Name'];
   $Mobile_no = $_POST['Mobile_no'];
   $Email_id = $_POST['Email_id'];
@@ -30,6 +29,21 @@ if (isset($_POST['submit'])) {
 
 
   else {
+    $sql= "SELECT Branch_id FROM Admin WHERE Admin_id = ?";
+    $stmt = mysqli_stmt_init($conn);
+
+    if(!mysqli_stmt_prepare($stmt, $sql)) {
+      header("Location: ../Agent-Register.php?error=sqlerror0");
+      exit();
+    } else {
+      mysqli_stmt_bind_param($stmt,"i",$Admin_id);
+      mysqli_stmt_execute($stmt);
+      $result = mysqli_stmt_get_result($stmt);
+      $row = mysqli_fetch_assoc($result);
+      $Branch_id = $row['Branch_id'];
+    }
+
+
     $sql = "SELECT Agency_code FROM Agent WHERE Agency_code = ?";
     $stmt = mysqli_stmt_init($conn);
 
