@@ -8,7 +8,7 @@ require_once 'header.php';
   <button name=""><a href="../Agent/Agent-Register.php"> Add New Agent </a></button>
   <button name=""><a href="View/ViewAgentList.php"> View Agent List </a></button>
   <button name=""><a href="View/ViewPolicy.php"> View Policy Record </a></button>
-  <button name=""><a href="Plan/PlanDetails.php"> Plan Details </a></button>
+  <button name=""><a href="Plan/PlanDetails.php"> Modify Plan </a></button>
 </div>
 
  <?php

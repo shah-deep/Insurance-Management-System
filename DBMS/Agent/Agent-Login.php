@@ -6,8 +6,8 @@ require_once 'header.php';
 <h1>Agent Login</h1>
 
 <form class="" action="includes/Agent-Login-inc.php" method="post">
-  <input type="number" name="Agency_code" placeholder="Agency Code">
-  <input type="password" name="password" placeholder="Password">
+  <input type="number" name="Agency_code" placeholder="Agency Code" required>
+  <input type="password" name="password" placeholder="Password" required>
   <button type="submit" name="submit">Login</button>
 </form>
 

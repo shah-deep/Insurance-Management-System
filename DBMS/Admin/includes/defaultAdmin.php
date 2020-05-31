@@ -2,12 +2,12 @@
 
 require_once '../database.php';
 
-$Admin_id = 111;
+$Admin_id = 12345;
 $password = 'xyz';
-$Branch_id = 417;
+$Branch_id = 41725;
 $Name = 'Admin';
 
-  $sql = "SELECT Admin_id FROM Admin WHERE Admin_id = 111";
+  $sql = "SELECT Admin_id FROM Admin WHERE Admin_id = 12345";
   $result = mysqli_query($conn, $sql);
   $rowCount = mysqli_num_rows($result);
 

@@ -28,6 +28,7 @@ require '../../database.php';
       <th>  First Unpaid Payment </th>
       <th> Term </th>
       <th> Premium Paying Term </th>
+      <th> Status </th>
     </tr>
     <?php
     if(isset($_POST['search'])){
@@ -61,6 +62,7 @@ require '../../database.php';
         <td><?php echo $row['FUP'] ?>  </td>
         <td><?php echo $row['Term'] ?></td>
         <td><?php echo $row['PPT'] ?></td>
+        <td><?php if($row['Status']==1){echo 'Active';} else{echo 'Deactivated';} ?></td>
       </tr>
   <?php
         }

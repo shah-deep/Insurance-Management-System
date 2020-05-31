@@ -7,8 +7,8 @@ require_once 'header.php';
 <h1>Admin Login</h1>
 
 <form class="" action="includes/Admin-Login-inc.php" method="post">
-  <input type="number" name="Admin_id" placeholder="Admin ID">
-  <input type="password" name="password" placeholder="Password">
+  <input type="number" name="Admin_id" placeholder="Admin ID" required>
+  <input type="password" name="password" placeholder="Password" required>
   <button type="submit" name="submit">Login</button>
 </form>
 
