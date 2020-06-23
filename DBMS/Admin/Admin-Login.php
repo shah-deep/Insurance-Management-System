@@ -1,11 +1,11 @@
 <?php
 session_start();
 require_once 'includes/defaultAdmin.php';
-require_once 'C:\xampp\htdocs\GitHub\Insurance-Management-System\DBMS\database.php';
+require_once 'C:\xampp\htdocs\Insurance-Management-System\DBMS\database.php';
 
    if (!isset($_SESSION['sessionId2'])) {
-       if (!($_SERVER['REQUEST_URI'] == '/GitHub/Insurance-Management-System/DBMS/Admin/Admin-Login.php')) {
-           header('Location: http://localhost/GitHub/Insurance-Management-System/DBMS');
+       if (!($_SERVER['REQUEST_URI'] == '/Insurance-Management-System/DBMS/Admin/Admin-Login.php')) {
+           header('Location: http://localhost/Insurance-Management-System/DBMS');
        }
    }
   ?>
