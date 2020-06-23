@@ -15,6 +15,11 @@
       <body>
         <header>
           <nav>
-
+            <p align='right'>
+            <?php if(!($_SERVER['REQUEST_URI'] == '/GitHub/Insurance-Management-System/DBMS/Admin/AdminMenu.php')) { ?>
+            <button type="button" name="AdminMenu" style="margin-right: 50px;"> <a href="http://localhost/GitHub/Insurance-Management-System/DBMS/Admin/AdminMenu.php"> Admin Menu </a> </button>
+            <?php } ?>
+            <button type="button" name="logout"> <a href="http://localhost/GitHub/Insurance-Management-System/DBMS/index.php"> Log out </a> </button>
+            </p>
           </nav>
         </header>

@@ -7,7 +7,7 @@ require_once '../header.php';
  <h1>Add New Plan</h1>
 
  <form class="" action="../includes/AddNewPlan-inc.php" method="post">
-   <input type="number" name="Plan_no" placeholder="Plan Number" min="100" max="999" required>
+   <input type="number" name="Plan_no" placeholder="Plan Number (3 digit)" min="100" max="999" style="width: 150px;" required>
    <input type="text" name="Name" placeholder="Name" required>
    <input type="number" name="MMA" placeholder="Maximum Maturity Age" required>
    <input type="number" name="min_SA" placeholder="Minimum Sum Assured" required>

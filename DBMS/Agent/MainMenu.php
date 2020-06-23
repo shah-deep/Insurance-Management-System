@@ -5,15 +5,15 @@ require_once 'header.php';
 <div class="">
   <ol>
     <li>
-      <a href="ManagePolicy/ManagePolicy.php"> Manage Policy </a> </li>
+      <a href="ManagePolicy/ManagePolicy.php"> Manage Policy </a> </li><br>
     <li>
-      <a href="PolicyOptions/PlanPresentation.php"> Plan Presentaion </a> </li>
+      <a href="PolicyOptions/PlanPresentation.php"> Plan Presentaion </a> </li><br>
       <li>
-      <a href="PolicyOptions/SearchPolicyDetails.php"> Search Policy Details </a> </li>
+      <a href="PolicyOptions/SearchPolicyDetails.php"> Search Policy Details </a> </li><br>
       <li>
-      <a href="PolicyOptions/CommissionReports.php"> Commission Reports </a> </li>
+      <a href="PolicyOptions/CommissionReports.php"> Commission Reports </a> </li><br>
       <li>
-      <a href="PolicyOptions/BusinessReport.php"> Business Reports </a></li>
+      <a href="PolicyOptions/BusinessReport.php"> Business Reports </a></li><br>
       <li>
       <a href="PremiumPaymentRecord/PremiumPaymentRecord.php"> Premium Payment Record </a> </li>
   </ol>

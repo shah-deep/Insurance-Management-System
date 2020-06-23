@@ -6,7 +6,7 @@ require_once '../header.php';
   <h1>Add Payment Record</h1>
 
   <form class="" action="../includes/AddPaymentRecord-inc.php" method="post">
-    <input type="number" name="Policy_no" placeholder="Policy Number" min="100000000" max="999999999">
+    <input type="number" name="Policy_no" placeholder="Policy Number (9 digit)" min="100000000" max="999999999" style="width: 165px;">
     <select name="Mode" required>
          <option value="" selected disabled>Mode of Payment</option>
          <option value="Cash">Cash</option>

@@ -8,7 +8,7 @@ require_once '../header.php';;
     <form class="" action="../includes/AddNewPolicyHolder-inc.php" method="post">
       <input type="text" name="Name" placeholder="Name" required>
       <input type="email" name="Email_id" placeholder="Email_id" required>
-      <input type="number" name="Mobile_no" placeholder="Mobile Number" min="1000000000" max="9999999999" required>
+      <input type="number" name="Mobile_no" placeholder="Mobile Number" min="5000000000" max="9999999999" required>
       <h7> Date of Birth:</h7>
       <input type="date" name="DOB" placeholder="DOB" required>
 

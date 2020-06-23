@@ -6,7 +6,7 @@ if (isset($_POST['submit'])) {
     $Policy_no = $_POST['Policy_no'];
     $Mode = $_POST['Mode'];
     $Amount = $_POST['Amount'];
-
+    $success1 = $success2 = $success3 = $success4 = true;
 
     if (empty($Policy_no) || empty($Mode) || empty($Amount)) {
         header("Location: ../PremiumPaymentRecord/AddPaymentRecord.php?error=emptyfields");
@@ -24,30 +24,41 @@ if (isset($_POST['submit'])) {
         } else {
             mysqli_stmt_bind_param($stmt, "i", $Policy_no);
             mysqli_stmt_execute($stmt);
-            $result = mysqli_stmt_get_result($stmt);
-            $rowCount = mysqli_stmt_num_rows($result);
-            $row = mysqli_fetch_assoc($result);
+            mysqli_stmt_store_result($stmt);
+            $rowCount = mysqli_stmt_num_rows($stmt);
             if ($rowCount<1) {
-                header("Location: ../PremiumPaymentRecord/AddPaymentRecord.php?error=Policy_number_Not_Found");
-                exit();
-            } elseif ($Amount < $row['Premium']) {
-              header("Location: ../PremiumPaymentRecord/AddPaymentRecord.php?error=Insufficient_Amount");
-              exit();
+               header("Location: ../PremiumPaymentRecord/AddPaymentRecord.php?error=Policy_number_Not_Found");
+               exit();
             }
+        }
 
-            else {
-              $sql = "INSERT INTO payment_record(Policy_no,Mode,Amount) VALUES (?,?,?)";
-              $stmt = mysqli_stmt_init($conn);
+        $sql = "SELECT * FROM Policy WHERE Policy_no = ?";
+        $stmt = mysqli_stmt_init($conn);
 
-              if (!mysqli_stmt_prepare($stmt, $sql)) {
-                  header("Location: ../PremiumPaymentRecord/AddPaymentRecord.php?error=sqlerror3");
-                  exit();
-              } else {
-                  mysqli_stmt_bind_param($stmt, "isi", $Policy_no,$Mode,$Amount);
-                  mysqli_stmt_execute($stmt);
-                  mysqli_stmt_store_result($stmt);
-                  $suceess1 = true;
-              }
+        if (!mysqli_stmt_prepare($stmt, $sql)) {
+            header("Location: ../PremiumPaymentRecord/AddPaymentRecord.php?error=sqlerror2");
+            exit();
+        } else {
+            mysqli_stmt_bind_param($stmt, "i", $Policy_no);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
+            $row = mysqli_fetch_assoc($result);
+            if ($Amount < $row['Premium']) {
+                header("Location: ../PremiumPaymentRecord/AddPaymentRecord.php?error=Insufficient_Amount");
+                exit();
+            } else {
+                $sql = "INSERT INTO payment_record(Policy_no,Mode,Amount) VALUES (?,?,?)";
+                $stmt = mysqli_stmt_init($conn);
+
+                if (!mysqli_stmt_prepare($stmt, $sql)) {
+                    header("Location: ../PremiumPaymentRecord/AddPaymentRecord.php?error=sqlerror3");
+                    exit();
+                } else {
+                    mysqli_stmt_bind_param($stmt, "isi", $Policy_no, $Mode, $Amount);
+                    mysqli_stmt_execute($stmt);
+                    mysqli_stmt_store_result($stmt);
+                    $success1 = true;
+                }
 
                 $sql = "UPDATE policy SET FUP = SEL(Policy_no) WHERE Policy_no = ?";
                 $stmt = mysqli_stmt_init($conn);
@@ -59,7 +70,7 @@ if (isset($_POST['submit'])) {
                     mysqli_stmt_bind_param($stmt, "i", $Policy_no);
                     mysqli_stmt_execute($stmt);
                     mysqli_stmt_store_result($stmt);
-                    $suceess2 = true;
+                    $success2 = true;
                 }
 
                 $sql = "SELECT FUP FROM policy WHERE Policy_no = ?";
@@ -73,30 +84,30 @@ if (isset($_POST['submit'])) {
                     mysqli_stmt_execute($stmt);
                     $result = mysqli_stmt_get_result($stmt);
                     $row = mysqli_fetch_assoc($result);
-                    $suceess3 = true;
+                    $success3 = true;
                 }
 
-                if ($row['FUP'] == NULL) {
-                  $sql = "UPDATE policy SET status=0 WHERE policy_no = ?";
-                  $stmt = mysqli_stmt_init($conn);
+                if ($row['FUP'] == null) {
+                    $sql = "UPDATE policy SET status=0 WHERE policy_no = ?";
+                    $stmt = mysqli_stmt_init($conn);
 
-                  if (!mysqli_stmt_prepare($stmt, $sql)) {
-                      header("Location: ../PremiumPaymentRecord/AddPaymentRecord.php?error=sqlerror6");
-                      exit();
-                  } else {
-                      mysqli_stmt_bind_param($stmt, "i", $Policy_no);
-                      mysqli_stmt_execute($stmt);
-                      mysqli_stmt_store_result($stmt);
-                      $suceess4 = true;
-                  }
+                    if (!mysqli_stmt_prepare($stmt, $sql)) {
+                        header("Location: ../PremiumPaymentRecord/AddPaymentRecord.php?error=sqlerror6");
+                        exit();
+                    } else {
+                        mysqli_stmt_bind_param($stmt, "i", $Policy_no);
+                        mysqli_stmt_execute($stmt);
+                        mysqli_stmt_store_result($stmt);
+                        $success4 = true;
+                    }
                 }
 
-                if ($suceess1 && $suceess2 && $suceess3 && $suceess4) {
+                if ($success1 && $success2 && $success3 && $success4) {
                     header("Location: ../PremiumPaymentRecord/AddPaymentRecord.php?success=PolicyAdded");
                     exit();
                 } else {
-                    header("Location: ../PremiumPaymentRecord/AddPaymentRecord.php?error=PolicyAdd_Failed");
-                    exit();
+                  header("Location: ../PremiumPaymentRecord/AddPaymentRecord.php?error=PolicyAdd_Failed");
+                  exit();
                 }
             }
         }
@@ -104,4 +115,3 @@ if (isset($_POST['submit'])) {
         mysqli_close($conn);
     }
 }
-?>

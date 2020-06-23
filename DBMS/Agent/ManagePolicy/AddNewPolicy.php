@@ -5,8 +5,8 @@ require_once '../header.php';
 <h1>Add New Policy</h1>
   <div class="">
     <form class="" action="../includes/AddNewPolicy-inc.php" method="post">
-        <input type="number" name="Policy_no" placeholder="Policy No." min="100000000" max="999999999" required>
-        <input type="number" name="Plan_no" placeholder="Plan No." min="100" max="999" required> <br> <br>
+        <input type="number" name="Policy_no" placeholder="Policy No. (9 digit)" min="100000000" max="999999999" style="width: 155px;" required>
+        <input type="number" name="Plan_no" placeholder="Plan No. (3 digit)" min="100" max="999" style="width: 150px;" required> <br> <br>
         <input type="number" name="Premium" placeholder="Premium" required>
         <input type="number" name="Term" placeholder="Term" required>
         <input type="number" name="PPT" placeholder="Premium Paying Term">

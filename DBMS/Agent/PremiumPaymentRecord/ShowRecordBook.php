@@ -14,7 +14,7 @@ require '../../database.php';
       <th>  Next P.D.</th>
     </tr>
     <?php
-    $sql = "SELECT * FROM payment_record, policy";
+    $sql = "SELECT * FROM policy as p, payment_record as pm WHERE p.Policy_no=pm.Policy_no";
     $result = mysqli_query($conn, $sql);
     $rowCount = mysqli_num_rows($result);
     if ($rowCount>0) {
