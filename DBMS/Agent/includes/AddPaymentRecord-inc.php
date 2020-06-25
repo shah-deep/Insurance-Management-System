@@ -27,8 +27,8 @@ if (isset($_POST['submit'])) {
             mysqli_stmt_store_result($stmt);
             $rowCount = mysqli_stmt_num_rows($stmt);
             if ($rowCount<1) {
-               header("Location: ../PremiumPaymentRecord/AddPaymentRecord.php?error=Policy_number_Not_Found");
-               exit();
+                header("Location: ../PremiumPaymentRecord/AddPaymentRecord.php?error=Policy_number_Not_Found");
+                exit();
             }
         }
 
@@ -106,8 +106,8 @@ if (isset($_POST['submit'])) {
                     header("Location: ../PremiumPaymentRecord/AddPaymentRecord.php?success=PolicyAdded");
                     exit();
                 } else {
-                  header("Location: ../PremiumPaymentRecord/AddPaymentRecord.php?error=PolicyAdd_Failed");
-                  exit();
+                    header("Location: ../PremiumPaymentRecord/AddPaymentRecord.php?error=PolicyAdd_Failed");
+                    exit();
                 }
             }
         }

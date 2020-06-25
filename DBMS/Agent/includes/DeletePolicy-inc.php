@@ -28,18 +28,18 @@ if (isset($_POST['submit'])) {
                 header("Location: ../ManagePolicy/DeletePolicy.php?error=Policy_number_Not_Found");
                 exit();
             } else {
-              $sql = "DELETE FROM Policy_holder WHERE Policy_no = ?";
-              $stmt = mysqli_stmt_init($conn);
+                $sql = "DELETE FROM Policy_holder WHERE Policy_no = ?";
+                $stmt = mysqli_stmt_init($conn);
 
-              if (!mysqli_stmt_prepare($stmt, $sql)) {
-                  header("Location: ../ManagePolicy/DeletePolicy.php?error=sqlerror3");
-                  exit();
-              } else {
-                  mysqli_stmt_bind_param($stmt, "i", $Policy_no);
-                  mysqli_stmt_execute($stmt);
-                  mysqli_stmt_store_result($stmt);
-                  $suceess1 = true;
-              }
+                if (!mysqli_stmt_prepare($stmt, $sql)) {
+                    header("Location: ../ManagePolicy/DeletePolicy.php?error=sqlerror3");
+                    exit();
+                } else {
+                    mysqli_stmt_bind_param($stmt, "i", $Policy_no);
+                    mysqli_stmt_execute($stmt);
+                    mysqli_stmt_store_result($stmt);
+                    $suceess1 = true;
+                }
 
                 $sql = "DELETE FROM Policy WHERE Policy_no = ?";
                 $stmt = mysqli_stmt_init($conn);

@@ -38,7 +38,7 @@ require '../../database.php';
   <?php
         }
     } else {
-      ?> </table> <?php
+        ?> </table> <?php
       echo "No results found";
     }
  ?>

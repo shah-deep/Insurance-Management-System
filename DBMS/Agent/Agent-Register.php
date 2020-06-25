@@ -13,7 +13,7 @@ require_once '../Admin/header.php';
   <input type="number" name="Mobile_no" placeholder="Mobile Number" min="5000000000" max="9999999999" required>
   <input type="email" name="Email_id" placeholder="E-mail" required>
   <input type="text" name="Designation" placeholder="Designation">
-  <input type="text" name="Address" placeholder="Address">
+  <input type="text" name="Address" placeholder="Address"><br>
   <h7>Date of Birth:</h7>
   <input type="date" name="DOB" placeholder="Date of Birth"><br><br>
   <button type="submit" name="submit">Register</button>

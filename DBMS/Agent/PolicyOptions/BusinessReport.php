@@ -36,7 +36,7 @@
    <?php
          }
      } else {
-       ?> </table> <?php
+         ?> </table> <?php
        echo "No results found";
      }
   ?>
@@ -45,8 +45,7 @@
 
 
  <?php
-}
- else {  ?>
+} else {  ?>
     <table border="1">
       <tr>
         <th>  Year </th>
@@ -68,7 +67,7 @@
     <?php
           }
       } else {
-        ?> </table> <?php
+          ?> </table> <?php
         echo "No results found";
       }
    ?>

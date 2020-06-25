@@ -30,20 +30,20 @@ require '../../database.php';
       <th> Status </th>
     </tr>
     <?php
-    if(isset($_POST['search'])){
-    $Value = $_POST['UserSearch'];
-    $sql = "SELECT * FROM Policy NATURAL join Policy_holder WHERE Name = ?";
-    $stmt = mysqli_stmt_init($conn);
+    if (isset($_POST['search'])) {
+        $Value = $_POST['UserSearch'];
+        $sql = "SELECT * FROM Policy NATURAL join Policy_holder WHERE Name = ?";
+        $stmt = mysqli_stmt_init($conn);
 
-    if (mysqli_stmt_prepare($stmt, $sql)) {
-        mysqli_stmt_bind_param($stmt, "s", $Value);
-        mysqli_stmt_execute($stmt);
-        $result = mysqli_stmt_get_result($stmt);
+        if (mysqli_stmt_prepare($stmt, $sql)) {
+            mysqli_stmt_bind_param($stmt, "s", $Value);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
+        }
+    } else {
+        $sql = "SELECT * FROM Policy";
+        $result = mysqli_query($conn, $sql);
     }
-  } else {
-    $sql = "SELECT * FROM Policy";
-    $result = mysqli_query($conn, $sql);
-  }
 
     $rowCount = mysqli_num_rows($result);
     if ($rowCount>0) {
@@ -60,14 +60,17 @@ require '../../database.php';
         <td><?php echo $row['FUP'] ?>  </td>
         <td><?php echo $row['Term'] ?></td>
         <td><?php echo $row['PPT'] ?></td>
-        <td><?php if($row['Status']==1){echo 'Active';} else{echo 'Deactivated';} ?></td>
+        <td><?php if ($row['Status']==1) {
+                echo 'Active';
+            } else {
+                echo 'Deactivated';
+            } ?></td>
       </tr>
   <?php
         }
     } else {
-      ?> </table> <?php
-      echo "No results found";
-      ?> <table> <?php
+        ?> </table> <?php
+      echo "No results found"; ?> <table> <?php
     }
  ?>
  </table>

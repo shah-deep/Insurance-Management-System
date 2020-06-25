@@ -15,7 +15,6 @@ require '../../database.php';
       <th>  min_age</th>
       <th>  max_age</th>
       <th>  MODE</th>
-      <th>  Type_term</th>
       <th>  Term</th>
       <th>  PPT   </th>
     </tr>
@@ -34,19 +33,28 @@ require '../../database.php';
         <td><?php echo $row['max_SA'] ?></td>
         <td><?php echo $row['min_age'] ?></td>
         <td><?php echo $row['max_age'] ?></td>
-        <td><?php  if($row['MODE_YEARLY']==1){echo 'Yearly |';}
-                   if($row['MODE_HALFLY']==1){echo 'Halfly |';}
-                   if($row['MODE_QUARTELY']==1){echo 'Quartely |';}
-                   if($row['MODE_MONTHLY']==1){echo 'Monthly |';}
-                   if($row['MODE_SINGLE']==1){echo 'Single';}
-                   ?></td>
+        <td><?php  if ($row['MODE_YEARLY']==1) {
+                echo 'Yearly |';
+            }
+            if ($row['MODE_HALFLY']==1) {
+                echo 'Halfly |';
+            }
+            if ($row['MODE_QUARTELY']==1) {
+                echo 'Quartely |';
+            }
+            if ($row['MODE_MONTHLY']==1) {
+                echo 'Monthly |';
+            }
+            if ($row['MODE_SINGLE']==1) {
+                echo 'Single';
+            } ?></td>
         <td><?php echo $row['T1'],"-",$row['T2'],"-",$row['T3'],"-",$row['T4'] ?></td>
         <td><?php echo $row['P1'],"-",$row['P2'],"-",$row['P3'],"-",$row['P4'] ?></td>
       </tr>
   <?php
         }
     } else {
-      ?> </table> <?php
+        ?> </table> <?php
       echo "No results found";
     }
  ?>

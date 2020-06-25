@@ -1,9 +1,9 @@
 <?php
 session_start();
-if(isset($_SESSION['sessionId']) || isset($_SESSION['sessionId2'])) {
-  session_unset();
-  session_destroy();
-  session_set_cookie_params(0);
+if (isset($_SESSION['sessionId']) || isset($_SESSION['sessionId2'])) {
+    session_unset();
+    session_destroy();
+    session_set_cookie_params(0);
 }
  ?>
 <html lang="en" dir="ltr">

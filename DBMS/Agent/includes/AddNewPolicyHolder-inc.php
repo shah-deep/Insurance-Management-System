@@ -41,9 +41,9 @@ if (isset($_POST['submit']) && isset($_SESSION['Policy_no'])) {
     } else {
         $sql = "SELECT timestampdiff(YEAR,$DOB,curdate())";
         $ag = mysqli_query($conn, $sql);
-        if ($ag==$Age) {
-          header("Location: ../ManagePolicy/AddNewPolicy.php?error=Invalid_Age");
-          exit();
+        if ($ag!=$Age) {
+            header("Location: ../ManagePolicy/AddNewPolicy.php?error=Invalid_Age");
+            exit();
         }
 
         $sql = "SELECT * FROM Policy_holder WHERE Policy_no = ?";
@@ -62,19 +62,19 @@ if (isset($_POST['submit']) && isset($_SESSION['Policy_no'])) {
                 header("Location: ../ManagePolicy/AddNewPolicyHolder.php?error=Policy_number_NotAvailable");
                 exit();
             } else {
-              $sql = "INSERT INTO Policy(Policy_no,Plan_no,Agency_code,Premium,DOC,FUP,Mode,SA,Term,PPT) VALUES (?,?,?,?,?,?,?,?,?,?)";
-              $stmt = mysqli_stmt_init($conn);
+                $sql = "INSERT INTO Policy(Policy_no,Plan_no,Agency_code,Premium,DOC,FUP,Mode,SA,Term,PPT) VALUES (?,?,?,?,?,?,?,?,?,?)";
+                $stmt = mysqli_stmt_init($conn);
 
-              if (!mysqli_stmt_prepare($stmt, $sql)) {
-                  header("Location: ../ManagePolicy/AddNewPolicyHolder.php?error=sqlerror3");
-                  exit();
-              } else {
-                  mysqli_stmt_bind_param($stmt, "iiiisssiii", $Policy_no, $Plan_no, $Agency_code, $Premium, $DOC, $FUP, $Mode, $SA, $Term, $PPT);
-                  mysqli_stmt_execute($stmt);
-                  mysqli_stmt_store_result($stmt);
-                //  print_r($stmt);
-                  $suceess1 = true;
-              }
+                if (!mysqli_stmt_prepare($stmt, $sql)) {
+                    header("Location: ../ManagePolicy/AddNewPolicyHolder.php?error=sqlerror3");
+                    exit();
+                } else {
+                    mysqli_stmt_bind_param($stmt, "iiiisssiii", $Policy_no, $Plan_no, $Agency_code, $Premium, $DOC, $FUP, $Mode, $SA, $Term, $PPT);
+                    mysqli_stmt_execute($stmt);
+                    mysqli_stmt_store_result($stmt);
+                    //  print_r($stmt);
+                    $suceess1 = true;
+                }
                 $sql = "INSERT INTO Policy_holder(Policy_no,Name,Mobile_no,Email_id,City,Colony,House_no,Pincode,Nominee_name,Nominee_relation,Gender,Occupation,DOB,Edu_ql) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
                 $stmt = mysqli_stmt_init($conn);
 
@@ -82,15 +82,14 @@ if (isset($_POST['submit']) && isset($_SESSION['Policy_no'])) {
                     header("Location: ../ManagePolicy/AddNewPolicyHolder.php?error=sqlerror2");
                     exit();
                 } else {
-                    mysqli_stmt_bind_param($stmt, "isissssissssss", $Policy_no,$Name,$Mobile_no,$Email_id,$City,$Colony,$House_no,$Pincode,$Nominee_name,$Nominee_relation,$Gender,$Occupation,$DOB,$Edu_ql);
+                    mysqli_stmt_bind_param($stmt, "isissssissssss", $Policy_no, $Name, $Mobile_no, $Email_id, $City, $Colony, $House_no, $Pincode, $Nominee_name, $Nominee_relation, $Gender, $Occupation, $DOB, $Edu_ql);
                     mysqli_stmt_execute($stmt);
                     mysqli_stmt_store_result($stmt);
-                //    print_r($stmt);
+                    //    print_r($stmt);
                     $suceess2 = true;
                 }
 
                 if ($suceess1 && $suceess2) {
-
                     unset($_SESSION['Policy_no']);
                     unset($_SESSION['Plan_no']);
                     unset($_SESSION['Agency_code']);
@@ -115,4 +114,3 @@ if (isset($_POST['submit']) && isset($_SESSION['Policy_no'])) {
         mysqli_close($conn);
     }
 }
-?>

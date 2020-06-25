@@ -19,7 +19,7 @@ require '../../database.php';
     $rowCount = mysqli_num_rows($result);
     if ($rowCount>0) {
         while ($row = mysqli_fetch_assoc($result)) {
-        //  print_r($row);
+            //  print_r($row);
             ?>
       <tr>
         <td><?php echo $row['Policy_no'] ?></td>
@@ -31,7 +31,7 @@ require '../../database.php';
   <?php
         }
     } else {
-      ?> </table> <?php
+        ?> </table> <?php
       echo "No results found";
     }
  ?>

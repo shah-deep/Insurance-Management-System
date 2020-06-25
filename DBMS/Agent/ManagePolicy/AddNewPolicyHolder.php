@@ -1,5 +1,5 @@
 <?php
-require_once '../header.php';;
+require_once '../header.php';
  ?>
 
 <h1>Add New Policy Holder</h1>
