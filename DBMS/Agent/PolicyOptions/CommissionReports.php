@@ -20,7 +20,6 @@ require '../../database.php';
     $rowCount = mysqli_num_rows($result);
 
         if ($rowCount>0) {
-          print_r($result);
             while ($row = mysqli_fetch_assoc($result)) {
                 ?>
           <tr>
@@ -29,9 +28,16 @@ require '../../database.php';
             <td><?php echo $row['C'] ?></td>
           </tr>
       <?php
-      $TotalCommission = 10;//$row['S'];
             }
         }
+
+      $sql = "SELECT SUM(`C`) AS S FROM (SELECT COM(Premium,Term) AS C FROM `policy` WHERE `Agency_code` = '$Agency_code' ) AS T";
+      $result = mysqli_query($conn, $sql);
+      $rowCount = mysqli_num_rows($result);
+      if ($rowCount>0) {
+        $row = mysqli_fetch_assoc($result);
+        $TotalCommission = $row['S'];
+      }
      ?>
      </table>
 

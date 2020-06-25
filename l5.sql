@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 31, 2020 at 04:32 PM
+-- Generation Time: Jun 25, 2020 at 04:28 PM
 -- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.5
+-- PHP Version: 7.2.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,10 +18,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `l3`
+-- Database: `l5`
 --
-CREATE DATABASE IF NOT EXISTS `l4` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `l4`;
+CREATE DATABASE IF NOT EXISTS `l5` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `l5`;
 
 DELIMITER $$
 --
@@ -66,20 +66,25 @@ DELIMITER ;
 DROP TABLE IF EXISTS `admin`;
 CREATE TABLE `admin` (
   `Admin_id` int(5) UNSIGNED ZEROFILL NOT NULL CHECK (octet_length(`Admin_id`) = 5),
-  `Branch_id` int(5) UNSIGNED ZEROFILL DEFAULT NULL CHECK (octet_length(`Branch_id`) = 5),
+  `Branch_id` int(5) UNSIGNED ZEROFILL NOT NULL,
   `Name` varchar(30) NOT NULL,
-  `Mobile_no` int(10) UNSIGNED DEFAULT NULL,
+  `Mobile_no` bigint(10) UNSIGNED NOT NULL,
   `Email_id` varchar(64) DEFAULT NULL,
-  `DOB` date,
+  `DOB` date NOT NULL,
   `AGE` int(11) GENERATED ALWAYS AS (timestampdiff(YEAR,`DOB`,curdate())) VIRTUAL,
   `Designation` varchar(15) DEFAULT NULL,
-  `Address` varchar(50) DEFAULT NULL,
-  `Password` varchar(100) DEFAULT NULL
+  `City` varchar(50) DEFAULT NULL,
+  `Password` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- RELATIONSHIPS FOR TABLE `admin`:
+-- Dumping data for table `admin`
 --
+
+INSERT INTO `admin` (`Admin_id`, `Branch_id`, `Name`, `Mobile_no`, `Email_id`, `DOB`, `Designation`, `City`, `Password`) VALUES
+(10100, 41725, 'b', 9428363267, 'abc@ac.x', '0000-00-00', 'abc', 'zyx', '$2y$10$MqdJAcKBvX8uRBDIEM8k7O7mAAhgCyDNMm63rEDo8jXCoQl2VZvku'),
+(10101, 41725, 'a', 9909564613, 'abc@ac.x', '2020-06-25', 'abc', 'zyx', '$2y$10$Nz5RuVAtjatrsivgllFTa.tqQvg/p6yygQgGkU93yHADH49Pj1w2G'),
+(12345, 41725, 'Admin', 0, NULL, '0000-00-00', NULL, NULL, '$2y$10$8ZZ9sM/2pxfFurpQmE4Zzur0FrXguiU/jYAiDX6rKP1ZaUv.3MN0u');
 
 -- --------------------------------------------------------
 
@@ -90,24 +95,26 @@ CREATE TABLE `admin` (
 DROP TABLE IF EXISTS `agent`;
 CREATE TABLE `agent` (
   `Agency_code` int(7) UNSIGNED ZEROFILL NOT NULL CHECK (octet_length(`Agency_code`) = 7),
-  `Admin_id` int(5) UNSIGNED ZEROFILL DEFAULT NULL CHECK (octet_length(`Admin_id`) = 5),
-  `Branch_id` int(5) UNSIGNED ZEROFILL DEFAULT NULL CHECK (octet_length(`Branch_id`) = 5),
+  `Admin_id` int(5) UNSIGNED ZEROFILL NOT NULL,
+  `Branch_id` int(5) UNSIGNED ZEROFILL NOT NULL,
   `Name` varchar(30) NOT NULL,
-  `Mobile_no` int(10) UNSIGNED DEFAULT NULL,
+  `Mobile_no` bigint(10) UNSIGNED NOT NULL,
   `Email_id` varchar(64) DEFAULT NULL,
-  `DOB` date,
+  `DOB` date NOT NULL,
   `AGE` int(11) GENERATED ALWAYS AS (timestampdiff(YEAR,`DOB`,curdate())) VIRTUAL,
   `Designation` varchar(15) DEFAULT NULL,
-  `Address` varchar(50) DEFAULT NULL,
-  `Password` varchar(100) DEFAULT NULL
+  `City` varchar(50) DEFAULT NULL,
+  `Password` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- RELATIONSHIPS FOR TABLE `agent`:
---   `Admin_id`
---       `admin` -> `Admin_id`
+-- Dumping data for table `agent`
 --
 
+INSERT INTO `agent` (`Agency_code`, `Admin_id`, `Branch_id`, `Name`, `Mobile_no`, `Email_id`, `DOB`, `Designation`, `City`, `Password`) VALUES
+(1111111, 12345, 41725, 'a', 9909564738, 'abc@ac.x', '2001-02-10', 'abc', 'zyx', '$2y$10$FicQQ20HObsHEZtjqrYOsOCMLDul9Zu7RGUldjpW/UcxfMqoVPngK'),
+(1234321, 12345, 41725, 'x', 9898767600, 'abc@ac.x', '2020-06-04', 'abc', 'zyx', '$2y$10$RSS7McEPdiFy339lA6sQrenk1KbRMOtdK/QUfgQ1VZ2cJMlty31Ua'),
+(1234567, 12345, 41725, 'x', 9909564613, 'abc@ac.x', '2020-06-23', 'abc', 'zyx', '$2y$10$a9lBa1Qm48gWhGhPcnrZpudTrg/PFa1cAMA9HIIRL5h0/KiJk2gTm');
 
 -- --------------------------------------------------------
 
@@ -123,13 +130,6 @@ CREATE TABLE `payment_record` (
   `Amount` int(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- RELATIONSHIPS FOR TABLE `payment_record`:
---   `Policy_no`
---       `policy` -> `Policy_no`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -141,8 +141,8 @@ CREATE TABLE `plan` (
   `Plan_no` int(3) UNSIGNED NOT NULL CHECK (octet_length(`Plan_no`) = 3),
   `Name` varchar(15) DEFAULT NULL,
   `MMA` int(3) NOT NULL,
-  `min_SA` int(10) UNSIGNED DEFAULT NULL CHECK (`min_SA` > 0),
-  `max_SA` int(10) UNSIGNED DEFAULT NULL,
+  `min_SA` bigint(10) UNSIGNED NOT NULL,
+  `max_SA` bigint(10) UNSIGNED DEFAULT NULL,
   `min_age` int(10) UNSIGNED NOT NULL,
   `max_age` int(10) UNSIGNED NOT NULL,
   `MODE_YEARLY` tinyint(1) DEFAULT 1,
@@ -162,9 +162,12 @@ CREATE TABLE `plan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- RELATIONSHIPS FOR TABLE `plan`:
+-- Dumping data for table `plan`
 --
 
+INSERT INTO `plan` (`Plan_no`, `Name`, `MMA`, `min_SA`, `max_SA`, `min_age`, `max_age`, `MODE_YEARLY`, `MODE_HALFLY`, `MODE_QUARTELY`, `MODE_MONTHLY`, `MODE_SINGLE`, `Type_term`, `T1`, `T2`, `T3`, `T4`, `P1`, `P2`, `P3`, `P4`) VALUES
+(914, 'New Endowment', 75, 100000, NULL, 8, 55, 1, 1, 1, 1, 0, 0, 12, 35, NULL, NULL, NULL, NULL, NULL, NULL),
+(915, 'JeevanAnand', 75, 0, 0, 18, 50, 1, 1, 1, 1, NULL, 0, 15, 35, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -178,23 +181,22 @@ CREATE TABLE `policy` (
   `Plan_no` int(3) UNSIGNED NOT NULL,
   `Agency_code` int(7) UNSIGNED ZEROFILL NOT NULL,
   `Premium` int(10) UNSIGNED NOT NULL,
-  `DOC` date,
-  `FUP` date,
+  `DOC` date DEFAULT NULL,
+  `FUP` date DEFAULT NULL,
   `Mode` enum('yearly','halfly','monthly','quartely','single premium') DEFAULT NULL,
-  `SA` int(10) UNSIGNED NOT NULL,
+  `SA` bigint(10) UNSIGNED NOT NULL,
   `Status` tinyint(1) NOT NULL DEFAULT 1,
   `Term` int(11) NOT NULL,
   `PPT` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- RELATIONSHIPS FOR TABLE `policy`:
---   `Plan_no`
---       `plan` -> `Plan_no`
---   `Agency_code`
---       `agent` -> `Agency_code`
+-- Dumping data for table `policy`
 --
 
+INSERT INTO `policy` (`Policy_no`, `Plan_no`, `Agency_code`, `Premium`, `DOC`, `FUP`, `Mode`, `SA`, `Status`, `Term`, `PPT`) VALUES
+(111111111, 914, 1234567, 2256, '2020-06-25', '2022-06-25', 'yearly', 100000, 1, 13, 13),
+(121111111, 914, 1234567, 1345, '2020-05-21', '2021-05-21', 'yearly', 200000, 1, 19, 19);
 
 -- --------------------------------------------------------
 
@@ -204,29 +206,30 @@ CREATE TABLE `policy` (
 
 DROP TABLE IF EXISTS `policy_holder`;
 CREATE TABLE `policy_holder` (
-  `Policy_no` int(9) UNSIGNED DEFAULT NULL CHECK (octet_length(`Policy_no`) = 9),
+  `Policy_no` int(9) UNSIGNED NOT NULL,
   `Name` varchar(30) NOT NULL,
-  `Mobile_no` int(10) NOT NULL,
+  `Mobile_no` bigint(10) NOT NULL,
   `Email_id` varchar(64) DEFAULT NULL,
   `City` varchar(15) DEFAULT NULL,
   `Colony` varchar(15) DEFAULT NULL,
   `House_no` varchar(10) DEFAULT NULL,
   `Pincode` int(6) DEFAULT NULL,
   `Nominee_name` varchar(30) NOT NULL,
-  `Nominee_relation` enum('Parent','Child','Spouse','Grand child','Relative','Friend') DEFAULT NULL,
+  `Nominee_relation` enum('Parent','Child','Spouse','Grand child','Relative','Friend') NOT NULL,
   `Gender` enum('MALE','FEMALE','OTHER') DEFAULT NULL,
   `Occupation` varchar(15) DEFAULT NULL,
-  `DOB` date,
+  `DOB` date NOT NULL,
   `Edu_ql` varchar(20) DEFAULT NULL,
   `AGE` int(11) GENERATED ALWAYS AS (timestampdiff(YEAR,`DOB`,curdate())) VIRTUAL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- RELATIONSHIPS FOR TABLE `policy_holder`:
---   `Policy_no`
---       `policy` -> `Policy_no`
+-- Dumping data for table `policy_holder`
 --
 
+INSERT INTO `policy_holder` (`Policy_no`, `Name`, `Mobile_no`, `Email_id`, `City`, `Colony`, `House_no`, `Pincode`, `Nominee_name`, `Nominee_relation`, `Gender`, `Occupation`, `DOB`, `Edu_ql`) VALUES
+(111111111, 'x', 9687586989, 'abc@ac.x', 'a', 'a', '1', 123456, 'a', 'Parent', 'MALE', 'a', '1996-01-02', 'a'),
+(121111111, 'x', 9909564632, 'abc@ac.x', 'a', 'a', '1', 123456, 'a', 'Parent', 'MALE', 'a', '2020-01-03', 'a');
 
 --
 -- Indexes for dumped tables
@@ -236,24 +239,20 @@ CREATE TABLE `policy_holder` (
 -- Indexes for table `admin`
 --
 ALTER TABLE `admin`
-  ADD PRIMARY KEY (`Admin_id`),
-  ADD UNIQUE KEY `Mobile_no` (`Mobile_no`),
-  ADD UNIQUE KEY `Email_id` (`Email_id`);
+  ADD PRIMARY KEY (`Admin_id`);
 
 --
 -- Indexes for table `agent`
 --
 ALTER TABLE `agent`
   ADD PRIMARY KEY (`Agency_code`),
-  ADD UNIQUE KEY `Mobile_no` (`Mobile_no`),
-  ADD UNIQUE KEY `Email_id` (`Email_id`),
   ADD KEY `Admin_id` (`Admin_id`) USING BTREE;
 
 --
 -- Indexes for table `payment_record`
 --
 ALTER TABLE `payment_record`
-  ADD PRIMARY KEY (`Policy_no`);
+  ADD PRIMARY KEY (`Policy_no`,`Date_Time`);
 
 --
 -- Indexes for table `plan`
@@ -265,16 +264,13 @@ ALTER TABLE `plan`
 -- Indexes for table `policy`
 --
 ALTER TABLE `policy`
-  ADD PRIMARY KEY (`Policy_no`),
-  ADD KEY `Plan_no` (`Plan_no`) USING BTREE,
-  ADD KEY `Agency_code` (`Agency_code`) USING BTREE;
+  ADD PRIMARY KEY (`Policy_no`);
 
 --
 -- Indexes for table `policy_holder`
 --
 ALTER TABLE `policy_holder`
-  ADD UNIQUE KEY `Policy_no` (`Policy_no`),
-  ADD UNIQUE KEY `Email_id` (`Email_id`);
+  ADD UNIQUE KEY `Policy_no` (`Policy_no`);
 
 --
 -- Constraints for dumped tables
@@ -296,7 +292,6 @@ ALTER TABLE `payment_record`
 -- Constraints for table `policy`
 --
 ALTER TABLE `policy`
-  ADD CONSTRAINT `policy_ibfk_1` FOREIGN KEY (`Plan_no`) REFERENCES `plan` (`Plan_no`),
   ADD CONSTRAINT `policy_ibfk_2` FOREIGN KEY (`Agency_code`) REFERENCES `agent` (`Agency_code`);
 
 --
@@ -304,40 +299,6 @@ ALTER TABLE `policy`
 --
 ALTER TABLE `policy_holder`
   ADD CONSTRAINT `policy_holder_ibfk_1` FOREIGN KEY (`Policy_no`) REFERENCES `policy` (`Policy_no`);
-
-
---
--- Metadata
---
-USE `phpmyadmin`;
-
---
--- Metadata for table admin
---
-
---
--- Metadata for table agent
---
-
---
--- Metadata for table payment_record
---
-
---
--- Metadata for table plan
---
-
---
--- Metadata for table policy
---
-
---
--- Metadata for table policy_holder
---
-
---
--- Metadata for database l3
---
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

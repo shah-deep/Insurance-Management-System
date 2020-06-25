@@ -67,7 +67,7 @@ if (isset($_POST['submit'])) {
                     mysqli_stmt_execute($stmt);
                     mysqli_stmt_store_result($stmt);
                     //print_r($stmt);
-                    $suceess1 = true;
+                    $success1 = true;
                 }
                 $sql = "INSERT INTO Policy_holder(Policy_no,Name,Mobile_no,Email_id,City,Colony,House_no,Pincode,Nominee_name,Nominee_relation,Gender,Occupation,DOB,Edu_ql) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
                 $stmt = mysqli_stmt_init($conn);
@@ -80,10 +80,10 @@ if (isset($_POST['submit'])) {
                     mysqli_stmt_execute($stmt);
                     mysqli_stmt_store_result($stmt);
                     //print_r($stmt);
-                    $suceess2 = true;
+                    $success2 = true;
                 }
 
-                if ($suceess1 && $suceess2) {
+                if ($success1 && $success2) {
                     unset($_SESSION['Policy_no']);
                     unset($_SESSION['Plan_no']);
                     unset($_SESSION['Agency_code']);

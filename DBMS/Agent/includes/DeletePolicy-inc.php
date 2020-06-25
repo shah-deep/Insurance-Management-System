@@ -4,7 +4,7 @@ if (isset($_POST['submit'])) {
     require '../../database.php';
 
     $Policy_no = $_POST['Policy_no']; //Not Null
-
+  
     if (empty($Policy_no)) {
         header("Location: ../ManagePolicy/DeletePolicy.php?error=emptyfields");
         exit();
@@ -38,7 +38,20 @@ if (isset($_POST['submit'])) {
                     mysqli_stmt_bind_param($stmt, "i", $Policy_no);
                     mysqli_stmt_execute($stmt);
                     mysqli_stmt_store_result($stmt);
-                    $suceess1 = true;
+                    $success1 = true;
+                }
+
+                $sql = "DELETE FROM payment_record WHERE Policy_no = ?";
+                $stmt = mysqli_stmt_init($conn);
+
+                if (!mysqli_stmt_prepare($stmt, $sql)) {
+                    header("Location: ../ManagePolicy/DeletePolicy.php?error=sqlerror2");
+                    exit();
+                } else {
+                    mysqli_stmt_bind_param($stmt, "i", $Policy_no);
+                    mysqli_stmt_execute($stmt);
+                    mysqli_stmt_store_result($stmt);
+                    $success2 = true;
                 }
 
                 $sql = "DELETE FROM Policy WHERE Policy_no = ?";
@@ -51,11 +64,11 @@ if (isset($_POST['submit'])) {
                     mysqli_stmt_bind_param($stmt, "i", $Policy_no);
                     mysqli_stmt_execute($stmt);
                     mysqli_stmt_store_result($stmt);
-                    $suceess2 = true;
+                    $success3 = true;
                 }
 
 
-                if ($suceess1 && $suceess2) {
+                if ($success1 && $success2 && $success3) {
                     header("Location: ../ManagePolicy/DeletePolicy.php?success=PolicyDeleted");
                     exit();
                 } else {
