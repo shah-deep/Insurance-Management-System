@@ -2,6 +2,7 @@
 
 if (isset($_POST['submit'])) {
   require '../../database.php';
+  
   $Plan_no = $_POST['Plan_no'];
   $Name = $_POST['Name'];
   $Name = str_replace(' ','', $Name);
@@ -56,23 +57,20 @@ if (isset($_POST['submit'])) {
       mysqli_stmt_store_result($stmt);
       $rowCount = mysqli_stmt_num_rows($stmt);
 
-      if($rowCount>0){
-        header("Location: ../Plan/AddNewPlan.php?error=Plan_no_Already_Taken");
-        exit();
-      } else {
-          $sql = "UPDATE plan SET Name = , MMA = , min_SA = , max_SA = , min_age = , max_age = , Mode_Yearly = , Mode_Halfly = , Mode_Quartely = , Mode_Monthly = , Mode_Single = , Type_term = , T1 = , T2 = , T3 = , T4 = , P1 = , P2 = , P3 = , P4 = ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+      
+          $sql = "UPDATE plan SET Name = ?, MMA = ?, min_SA = ?, max_SA = ?, min_age = ?, max_age = ?, Mode_Yearly = ?, Mode_Halfly = ?, Mode_Quartely = ?, Mode_Monthly = ?, Mode_Single = ?, Type_term = ?, T1 = ?, T2 = ?, T3 = ?, T4 = ?, P1 = ?, P2 = ?, P3 = ?, P4 = ?";
           $stmt = mysqli_stmt_init($conn);
           if(!mysqli_stmt_prepare($stmt, $sql)) {
-            header("Location: ../Plan/AddNewPlan.php?error=sqlerror2");
+            header("Location: ../Plan/editPlan.php?error=sqlerror2");
             exit();
           } else {
             mysqli_stmt_bind_param($stmt,"siiiiiiiiiiiiiiiiiii",$Name,$MMA,$min_SA,$max_SA,$min_age,$max_age,$Mode_Yearly,$Mode_Halfly,$Mode_Quartely, $Mode_Monthly, $Mode_Single, $Type_term, $T1, $T2, $T3, $T4, $P1, $P2, $P3, $P4);
             mysqli_stmt_execute($stmt);
             mysqli_stmt_store_result($stmt);
-            header("Location: ../Plan/AddNewPlan.php?success=registered");
+            header("Location: ../View/ViewPlan.php?success=plan updated");
             exit();
           }
-      }
+      
     }
     mysqli_stmt_close($stmt);
     mysqli_close($conn);
