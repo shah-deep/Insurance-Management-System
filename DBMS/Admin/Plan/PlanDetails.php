@@ -5,8 +5,7 @@ require_once '../header.php';
 <div class="">
   <h1>Modify Plan</h1>
   <button name=""><a href="AddNewPlan.php"> Add New Plan </a></button>
-  <button name=""><a href="UpdatePlan.php"> Update Plan </a></button>
-  <button name=""><a href="../View/ViewPlan.php"> View Plan </a></button>
+  <button name=""><a href="../View/ViewPlan.php"> View/Edit Plan </a></button>
 </div>
 
 
