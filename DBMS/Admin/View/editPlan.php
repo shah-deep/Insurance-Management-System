@@ -14,6 +14,7 @@ $sql = "SELECT * FROM Plan WHERE Plan_no = $plan_no AND Name = '$name'";
  ?>
         
 <form action = "../includes/changePlan-inc.php" method = "post">
+	<input hidden name="Plan_no" value="<?php echo $row['Plan_no'] ?>">
    Name<input type="text" name="Name" placeholder="Name" value = "<?php echo $row['Name'] ?>" required>
    MMA<input type="number" name="MMA" placeholder="Maximum Maturity Age" value="<?php echo $row['MMA'] ?>" required>
    MinSA<input type="number" name="min_SA" placeholder="Minimum Sum Assured" value="<?php echo $row['min_SA'] ?>" required>
@@ -58,7 +59,7 @@ $sql = "SELECT * FROM Plan WHERE Plan_no = $plan_no AND Name = '$name'";
    </table>
 
    <br><br>
-   <button type="submit" name="submit">Add Plan</button>
+   <button type="submit" name="submit">Update Plan</button>
 </form>
  
  <?php
