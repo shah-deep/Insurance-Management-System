@@ -1,6 +1,6 @@
 <?php
 
-if (isset($_POST['submit']) && isset($_SESSION['Policy_no'])) {
+if (isset($_POST['submit'])) {
     require '../../database.php';
     session_start();
     $Policy_no = $_SESSION['Policy_no']; //Not Null
@@ -39,12 +39,6 @@ if (isset($_POST['submit']) && isset($_SESSION['Policy_no'])) {
         header("Location: ../ManagePolicy/AddNewPolicyHolder.php?error=invalidCode");
         exit();
     } else {
-        $sql = "SELECT timestampdiff(YEAR,$DOB,curdate())";
-        $ag = mysqli_query($conn, $sql);
-        if ($ag!=$Age) {
-            header("Location: ../ManagePolicy/AddNewPolicy.php?error=Invalid_Age");
-            exit();
-        }
 
         $sql = "SELECT * FROM Policy_holder WHERE Policy_no = ?";
         $stmt = mysqli_stmt_init($conn);
@@ -72,7 +66,7 @@ if (isset($_POST['submit']) && isset($_SESSION['Policy_no'])) {
                     mysqli_stmt_bind_param($stmt, "iiiisssiii", $Policy_no, $Plan_no, $Agency_code, $Premium, $DOC, $FUP, $Mode, $SA, $Term, $PPT);
                     mysqli_stmt_execute($stmt);
                     mysqli_stmt_store_result($stmt);
-                    //  print_r($stmt);
+                      print_r($stmt);
                     $suceess1 = true;
                 }
                 $sql = "INSERT INTO Policy_holder(Policy_no,Name,Mobile_no,Email_id,City,Colony,House_no,Pincode,Nominee_name,Nominee_relation,Gender,Occupation,DOB,Edu_ql) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -85,7 +79,7 @@ if (isset($_POST['submit']) && isset($_SESSION['Policy_no'])) {
                     mysqli_stmt_bind_param($stmt, "isissssissssss", $Policy_no, $Name, $Mobile_no, $Email_id, $City, $Colony, $House_no, $Pincode, $Nominee_name, $Nominee_relation, $Gender, $Occupation, $DOB, $Edu_ql);
                     mysqli_stmt_execute($stmt);
                     mysqli_stmt_store_result($stmt);
-                    //    print_r($stmt);
+                        print_r($stmt);
                     $suceess2 = true;
                 }
 
@@ -113,4 +107,6 @@ if (isset($_POST['submit']) && isset($_SESSION['Policy_no'])) {
         mysqli_stmt_close($stmt);
         mysqli_close($conn);
     }
+} else {
+  echo "Session Variable not set";
 }

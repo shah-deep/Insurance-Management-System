@@ -11,7 +11,7 @@ require_once '../header.php';
    <input type="text" name="Name" placeholder="Name" required>
    <input type="number" name="MMA" placeholder="Maximum Maturity Age" required>
    <input type="number" name="min_SA" placeholder="Minimum Sum Assured" required>
-   <input type="number" name="max_SA" placeholder="Maximum Sum Assured">
+   <input type="number" name="max_SA" placeholder="Maximum Sum Assured" required>
    <input type="number" name="min_age" placeholder="Minimum Age" required>
    <input type="number" name="max_age" placeholder="Maximum Age" required>
    <br><br>

@@ -15,11 +15,12 @@ require '../../database.php';
 
     <?php
     $Agency_code = $_SESSION['sessionId'];
-    $sql = "SELECT `Policy_no`, `Premium`, `C`, SUM(`C`) AS S FROM  ( SELECT `Policy_no`, `Premium`, COM(Premium,Term) AS C FROM `policy` WHERE `Agency_code` = '$Agency_code' ) AS T";
+    $sql = "SELECT *, SUM(C) AS S FROM ( SELECT *, COM(Premium,Term) AS C FROM policy) AS T WHERE Agency_code = $Agency_code";
     $result = mysqli_query($conn, $sql);
     $rowCount = mysqli_num_rows($result);
 
         if ($rowCount>0) {
+          print_r($result);
             while ($row = mysqli_fetch_assoc($result)) {
                 ?>
           <tr>
@@ -30,9 +31,6 @@ require '../../database.php';
       <?php
       $TotalCommission = $row['S'];
             }
-        } else {
-            ?> </table> <?php
-          echo "No results found"; ?> <table> <?php
         }
      ?>
      </table>
