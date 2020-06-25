@@ -15,6 +15,8 @@ if (isset($_POST['submit'])) {
 
     session_start();
     $Admin_id = $_SESSION['sessionId2'];
+    $sql = "SELECT Branch_id FROM Admin WHERE Admin_id = $Admin_id";
+    $Branch_id = mysqli_query($conn, $sql);
 
     if (empty($Agency_code) || empty($password) || empty($confirmPassword) || empty($Name) || empty($Branch_id) || empty($Admin_id)) {
         header("Location: ../Agent-Register.php?error=emptyfields");
@@ -67,7 +69,7 @@ if (isset($_POST['submit'])) {
 
                     mysqli_stmt_bind_param($stmt, "iiisisssss", $Agency_code, $Admin_id, $Branch_id, $Name, $Mobile_no, $Email_id, $DOB, $Designation, $Address, $hashedPass);
                     mysqli_stmt_execute($stmt);
-                    //print_r($stmt);
+                  //  print_r($stmt);
                     mysqli_stmt_store_result($stmt);
                     header("Location: ../Agent-Register.php?success=registered");
                     exit();

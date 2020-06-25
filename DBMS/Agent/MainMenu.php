@@ -1,7 +1,7 @@
 <?php
 require_once 'header.php';
  ?>
- <h1>Main Menu</h1>
+ <h1>Agent Menu</h1>
 <div class="">
   <ol>
     <li>
