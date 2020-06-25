@@ -66,7 +66,7 @@ if (isset($_POST['submit'])) {
                     mysqli_stmt_bind_param($stmt, "iiiisssiii", $Policy_no, $Plan_no, $Agency_code, $Premium, $DOC, $FUP, $Mode, $SA, $Term, $PPT);
                     mysqli_stmt_execute($stmt);
                     mysqli_stmt_store_result($stmt);
-                      print_r($stmt);
+                    //print_r($stmt);
                     $suceess1 = true;
                 }
                 $sql = "INSERT INTO Policy_holder(Policy_no,Name,Mobile_no,Email_id,City,Colony,House_no,Pincode,Nominee_name,Nominee_relation,Gender,Occupation,DOB,Edu_ql) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -79,7 +79,7 @@ if (isset($_POST['submit'])) {
                     mysqli_stmt_bind_param($stmt, "isissssissssss", $Policy_no, $Name, $Mobile_no, $Email_id, $City, $Colony, $House_no, $Pincode, $Nominee_name, $Nominee_relation, $Gender, $Occupation, $DOB, $Edu_ql);
                     mysqli_stmt_execute($stmt);
                     mysqli_stmt_store_result($stmt);
-                        print_r($stmt);
+                    //print_r($stmt);
                     $suceess2 = true;
                 }
 
@@ -96,8 +96,34 @@ if (isset($_POST['submit'])) {
                     unset($_SESSION['PPT']);
                     unset($_SESSION['Age']);
 
+                    $sql = "SELECT * FROM Policy_holder WHERE Policy_no = ?";
+                    $stmt = mysqli_stmt_init($conn);
+                    mysqli_stmt_prepare($stmt, $sql);
+                    mysqli_stmt_bind_param($stmt, "i", $Policy_no);
+                    mysqli_stmt_execute($stmt);
+                    mysqli_stmt_store_result($stmt);
+                    $rowCount = mysqli_stmt_num_rows($stmt);
+                    if ($rowCount>0) {
                     header("Location: ../ManagePolicy/ManagePolicy.php?success=PolicyAdded");
                     exit();
+                    } else {
+                      $sql = "SELECT * FROM Policy WHERE Policy_no = ?";
+                      $stmt = mysqli_stmt_init($conn);
+                      mysqli_stmt_prepare($stmt, $sql);
+                      mysqli_stmt_bind_param($stmt, "i", $Policy_no);
+                      mysqli_stmt_execute($stmt);
+                      mysqli_stmt_store_result($stmt);
+                      $rowCount = mysqli_stmt_num_rows($stmt);
+                      if ($rowCount>0) {
+                        $sql = "DELETE FROM Policy WHERE Policy_no = ?";
+                        mysqli_stmt_prepare($stmt, $sql);
+                        mysqli_stmt_bind_param($stmt, "i", $Policy_no);
+                        mysqli_stmt_execute($stmt);
+                        mysqli_stmt_store_result($stmt);
+                      }
+                      header("Location: ../ManagePolicy/ManagePolicy.php?error=PolicyAdd_Failed");
+                      exit();
+                    }
                 } else {
                     header("Location: ../ManagePolicy/AddNewPolicyHolder.php?error=PolicyAdd_Failed");
                     exit();

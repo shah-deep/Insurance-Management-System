@@ -12,7 +12,7 @@ require_once '../header.php';
       <h7> Date of Birth:</h7>
       <input type="date" name="DOB" placeholder="DOB" required>
 
-      <p> Address: </p>
+      <h2> Address: </h2>
       <input type="text" name="House_no" placeholder="House Number">
       <input type="text" name="Colony" placeholder="Colony">
       <input type="text" name="City" placeholder="City">

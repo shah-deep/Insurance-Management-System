@@ -11,7 +11,7 @@ if (isset($_POST['submit'])) {
     $Email_id = $_POST['Email_id'];
     $DOB = $_POST['DOB'];
     $Designation = $_POST['Designation'];
-    $Address = $_POST['Address'];
+    $City = $_POST['City'];
 
     session_start();
     $Admin_id = $_SESSION['sessionId2'];
@@ -59,7 +59,7 @@ if (isset($_POST['submit'])) {
                 header("Location: ../Agent-Register.php?error=usernametaken");
                 exit();
             } else {
-                $sql = "INSERT INTO agent (Agency_code, Admin_id, Branch_id, Name, Mobile_no, Email_id, DOB, Designation, Address, Password) VALUES (?,?,?,?,?,?,?,?,?,?)";
+                $sql = "INSERT INTO agent (Agency_code, Admin_id, Branch_id, Name, Mobile_no, Email_id, DOB, Designation, City, Password) VALUES (?,?,?,?,?,?,?,?,?,?)";
                 $stmt = mysqli_stmt_init($conn);
                 if (!mysqli_stmt_prepare($stmt, $sql)) {
                     header("Location: ../Agent-Register.php?error=sqlerror2");
@@ -67,7 +67,7 @@ if (isset($_POST['submit'])) {
                 } else {
                     $hashedPass = password_hash($password, PASSWORD_DEFAULT);
 
-                    mysqli_stmt_bind_param($stmt, "iiisisssss", $Agency_code, $Admin_id, $Branch_id, $Name, $Mobile_no, $Email_id, $DOB, $Designation, $Address, $hashedPass);
+                    mysqli_stmt_bind_param($stmt, "iiisisssss", $Agency_code, $Admin_id, $Branch_id, $Name, $Mobile_no, $Email_id, $DOB, $Designation, $City, $hashedPass);
                     mysqli_stmt_execute($stmt);
                   //  print_r($stmt);
                     mysqli_stmt_store_result($stmt);

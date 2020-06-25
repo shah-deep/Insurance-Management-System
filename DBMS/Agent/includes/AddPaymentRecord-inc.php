@@ -103,10 +103,10 @@ if (isset($_POST['submit'])) {
                 }
 
                 if ($success1 && $success2 && $success3 && $success4) {
-                    header("Location: ../PremiumPaymentRecord/AddPaymentRecord.php?success=PolicyAdded");
+                    header("Location: ../PremiumPaymentRecord/AddPaymentRecord.php?success=Payment_Record_Added");
                     exit();
                 } else {
-                    header("Location: ../PremiumPaymentRecord/AddPaymentRecord.php?error=PolicyAdd_Failed");
+                    header("Location: ../PremiumPaymentRecord/AddPaymentRecord.php?error=Payment_Record_Failed");
                     exit();
                 }
             }

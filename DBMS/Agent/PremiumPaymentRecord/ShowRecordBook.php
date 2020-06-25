@@ -37,6 +37,8 @@ require '../../database.php';
  ?>
   </table>
 </div>
+<br><br>
+<button name=""><a href="AddPaymentRecord.php"> Add Payment Record </a></button>
 
  <?php
  require_once '../footer.php';

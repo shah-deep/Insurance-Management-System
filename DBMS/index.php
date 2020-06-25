@@ -9,7 +9,7 @@ if (isset($_SESSION['sessionId']) || isset($_SESSION['sessionId2'])) {
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Insurance Management System</title>
   </head>
   <body>
     <h1><b> Insurance Management System </b></h1>

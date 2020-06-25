@@ -4,7 +4,7 @@ require '../../database.php';
  ?>
 
 <div class="">
-  <h1> Policy Details </h1>
+  <h1> Policy Holder Details </h1>
   <table border="1">
     <tr>
       <th>  Policy_No</th>

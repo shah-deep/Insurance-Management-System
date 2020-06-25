@@ -11,7 +11,7 @@ $sql = "SELECT * FROM Policy_holder WHERE Policy_no = $policy_no AND Name = '$na
     if ($rowCount>0) {
         $row = mysqli_fetch_assoc($result); ?>
 
-<h1>Add New Policy Holder</h1>
+<h1>Update Policy Holder</h1>
   <div class="">
     <h2>Holder's Details:</h2>
     <form class="" action="../includes/UpdatePolicyHolder-inc.php" method="post">

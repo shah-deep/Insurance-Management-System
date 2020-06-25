@@ -10,7 +10,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>IMS Agent <?php echo $_SESSION['sessionUser']," (",$_SESSION['sessionId'],")"; ?></title>
   </head>
   <body>
     <header>

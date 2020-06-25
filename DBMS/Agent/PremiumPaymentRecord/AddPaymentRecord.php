@@ -14,7 +14,9 @@ require_once '../header.php';
     </select>
     <input type="number" name="Amount" placeholder="Amount">
     <br> <br>
-    <button type="submit" name="submit">Add Payment Record</button>
+    <button type="submit" name="submit" style="margin-left: 325px;">Add Payment Record</button>
+    <br> <br> <br>
+    <button name=""><a href="ShowRecordBook.php"> Show Record Book </a></button>
   </form>
 </div>
 

@@ -18,6 +18,7 @@ require_once '../header.php';
              <option value="halfly">Half-Yearly</option>
              <option value="monthly">Monthly</option>
              <option value="quartely">Quartely</option>
+             <option value="single premium">Single Premium</option>
         </select>
         <br><br>
         <h7> Date of Commencement:</h7>

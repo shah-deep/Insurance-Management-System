@@ -86,6 +86,11 @@ if (isset($_POST['submit'])) {
                     }
                 }
 
+                if (($row['MODE_YEARLY']==0 && $Mode=='YEARLY') || ($row['MODE_HALFLY']==0 && $Mode=='HALFLY') || ($row['MODE_QUARTELY']==0 && $Mode=='QUARTELY') || ($row['MODE_MONTHLY']==0 && $Mode=='MONTHLY') || ($row['MODE_SINGLE']==0 && $Mode=='SINGLE')) {
+                    header("Location: ../ManagePolicy/AddNewPolicy.php?error=Invalid_Mode");
+                    exit();
+                }
+
                 $_SESSION['Policy_no'] = $Policy_no;
                 $_SESSION['Plan_no'] = $Plan_no;
                 $_SESSION['Agency_code'] = $Agency_code;

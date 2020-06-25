@@ -15,7 +15,7 @@ require '../../database.php';
       <th>  Email ID</th>
       <th>  Date Of Birth</th>
       <th>  Designation</th>
-      <th>  Address  </th>
+      <th>  City  </th>
     </tr>
     <?php
     $sql = "SELECT * FROM Agent";
@@ -33,7 +33,7 @@ require '../../database.php';
         <td><?php echo $row['Email_id'] ?></td>
         <td><?php echo $row['DOB'] ?></td>
         <td><?php echo $row['Designation'] ?></td>
-        <td><?php echo $row['Address'] ?>  </td>
+        <td><?php echo $row['City'] ?>  </td>
       </tr>
   <?php
         }

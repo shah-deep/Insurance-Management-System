@@ -10,7 +10,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Insurance Management System</title>
   </head>
   <body>
     <header>

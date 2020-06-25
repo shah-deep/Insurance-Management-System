@@ -12,7 +12,7 @@ if (isset($_POST['submit'])) {
     $Email_id = $_POST['Email_id'];
     $DOB = $_POST['DOB'];
     $Designation = $_POST['Designation'];
-    $Address = $_POST['Address'];
+    $City = $_POST['City'];
 
     if (empty($Admin_id) || empty($password) || empty($confirmPassword) || empty($Name) || empty($Branch_id)) {
         header("Location: ../Admin-Register.php?error=emptyfields");
@@ -40,7 +40,7 @@ if (isset($_POST['submit'])) {
                 header("Location: ../Admin-Register.php?error=usernametaken");
                 exit();
             } else {
-                $sql = "INSERT INTO admin(Admin_id, Branch_id, Name, Mobile_no, Email_id, DOB, Designation, Address, Password) VALUES (?,?,?,?,?,?,?,?,?)";
+                $sql = "INSERT INTO admin(Admin_id, Branch_id, Name, Mobile_no, Email_id, DOB, Designation, City, Password) VALUES (?,?,?,?,?,?,?,?,?)";
                 $stmt = mysqli_stmt_init($conn);
                 if (!mysqli_stmt_prepare($stmt, $sql)) {
                     header("Location: ../Admin-Register.php?error=sqlerror2");
@@ -48,7 +48,7 @@ if (isset($_POST['submit'])) {
                 } else {
                     $hashedPass = password_hash($password, PASSWORD_DEFAULT);
 
-                    mysqli_stmt_bind_param($stmt, "iisisssss", $Admin_id, $Branch_id, $Name, $Mobile_no, $Email_id, $DOB, $Designation, $Address, $hashedPass);
+                    mysqli_stmt_bind_param($stmt, "iisisssss", $Admin_id, $Branch_id, $Name, $Mobile_no, $Email_id, $DOB, $Designation, $City, $hashedPass);
                     mysqli_stmt_execute($stmt);
                     mysqli_stmt_store_result($stmt);
                     header("Location: ../Admin-Register.php?success=registered");
