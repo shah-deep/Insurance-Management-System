@@ -17,6 +17,7 @@ require '../../database.php';
       <th>  MODE</th>
       <th>  Term</th>
       <th>  PPT   </th>
+	  <th>  Operations   </th>
     </tr>
     <?php
     $sql = "SELECT * FROM Plan";
@@ -24,8 +25,10 @@ require '../../database.php';
     $rowCount = mysqli_num_rows($result);
     if ($rowCount>0) {
         while ($row = mysqli_fetch_assoc($result)) {
+			
+			$url = "Plan_no=".$row['Plan_no']."&Name=".$row['Name'];
             ?>
-      <tr>
+      <tr style="cursor:pointer;" onclick="window.open('editPlan.php?<?php echo $url ?>','_blank')">
         <td><?php echo $row['Plan_no'] ?></td>
         <td><?php echo $row['Name'] ?></td>
         <td><?php echo $row['MMA'] ?></td>
@@ -41,6 +44,7 @@ require '../../database.php';
                    ?></td>
         <td><?php echo $row['T1'],"-",$row['T2'],"-",$row['T3'],"-",$row['T4'] ?></td>
         <td><?php echo $row['P1'],"-",$row['P2'],"-",$row['P3'],"-",$row['P4'] ?></td>
+		<td style="text-align:center"><button>Edit</button></td>
       </tr>
   <?php
         }
