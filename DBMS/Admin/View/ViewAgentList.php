@@ -4,7 +4,7 @@ require '../../database.php';
  ?>
 
 <div class="">
-  <h1> Agency List </h1>
+  <h1> My Agencies List </h1>
   <table border="1">
     <tr>
       <th>  Agency Code</th>
@@ -18,7 +18,8 @@ require '../../database.php';
       <th>  City  </th>
     </tr>
     <?php
-    $sql = "SELECT * FROM Agent";
+    $Admin_id = $_SESSION['sessionId2'];
+    $sql = "SELECT * FROM Agent WHERE Admin_id = $Admin_id";
     $result = mysqli_query($conn, $sql);
     $rowCount = mysqli_num_rows($result);
     if ($rowCount>0) {

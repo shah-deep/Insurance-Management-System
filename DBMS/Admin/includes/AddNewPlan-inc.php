@@ -28,8 +28,9 @@ if (isset($_POST['submit'])) {
 
 
 
-    if ($min_SA>$max_SA) {
-        $min_SA=0;
+    if ($min_SA>$max_SA && $max_SA!=0) {
+      header("Location: ../Plan/AddNewPlan.php?error=invalid_Min_SA");
+      exit();
     }
 
     if ($min_age>$max_age) {
