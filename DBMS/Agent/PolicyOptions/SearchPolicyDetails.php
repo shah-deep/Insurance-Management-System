@@ -30,9 +30,10 @@ require '../../database.php';
       <th> Status </th>
     </tr>
     <?php
+    $Agency_code = $_SESSION['sessionId'];
     if (isset($_POST['search'])) {
         $Value = $_POST['UserSearch'];
-        $sql = "SELECT * FROM Policy NATURAL join Policy_holder WHERE Name = ?";
+        $sql = "SELECT * FROM Policy NATURAL join Policy_holder WHERE Agency_code = $Agency_code AND Name = ?";
         $stmt = mysqli_stmt_init($conn);
 
         if (mysqli_stmt_prepare($stmt, $sql)) {
@@ -41,7 +42,7 @@ require '../../database.php';
             $result = mysqli_stmt_get_result($stmt);
         }
     } else {
-        $sql = "SELECT * FROM Policy";
+        $sql = "SELECT * FROM Policy WHERE Agency_code = $Agency_code";
         $result = mysqli_query($conn, $sql);
     }
 

@@ -2,9 +2,10 @@
 
 if (isset($_POST['submit'])) {
     require '../../database.php';
-
+    session_start();
     $Policy_no = $_POST['Policy_no']; //Not Null
-  
+    $Agency_code = $_SESSION['sessionId'];
+
     if (empty($Policy_no)) {
         header("Location: ../ManagePolicy/DeletePolicy.php?error=emptyfields");
         exit();
@@ -12,7 +13,7 @@ if (isset($_POST['submit'])) {
         header("Location: ../ManagePolicy/DeletePolicy.php?error=invalidCode");
         exit();
     } else {
-        $sql = "SELECT * FROM Policy_holder WHERE Policy_no = ?";
+        $sql = "SELECT * FROM Policy WHERE Agency_code = $Agency_code AND Policy_no = ?";
         $stmt = mysqli_stmt_init($conn);
 
         if (!mysqli_stmt_prepare($stmt, $sql)) {

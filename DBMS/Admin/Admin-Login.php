@@ -1,6 +1,5 @@
 <?php
 session_start();
-require_once 'includes/defaultAdmin.php';
 require_once 'C:\xampp\htdocs\Insurance-Management-System\DBMS\database.php';
 
    if (!isset($_SESSION['sessionId2'])) {

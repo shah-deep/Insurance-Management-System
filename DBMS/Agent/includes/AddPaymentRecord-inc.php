@@ -2,10 +2,12 @@
 
 if (isset($_POST['submit'])) {
     require '../../database.php';
+    session_start();
 
     $Policy_no = $_POST['Policy_no'];
     $Mode = $_POST['Mode'];
     $Amount = $_POST['Amount'];
+    $Agency_code = $_SESSION['sessionId'];
     $success1 = $success2 = $success3 = $success4 = true;
 
 
@@ -33,7 +35,7 @@ if (isset($_POST['submit'])) {
             }
         }
 
-        $sql = "SELECT FUP FROM policy WHERE Policy_no = ?";
+        $sql = "SELECT FUP, Agency_code FROM policy WHERE Policy_no = ?";
         $stmt = mysqli_stmt_init($conn);
 
         if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -49,6 +51,11 @@ if (isset($_POST['submit'])) {
         if ($row['FUP']==NULL || $row['FUP']==0) {
             header("Location: ../PremiumPaymentRecord/AddPaymentRecord.php?error=Policy_Expired");
             exit();
+        }
+
+        if ($row['Agency_code'] != $Agency_code) {
+           header("Location: ../PremiumPaymentRecord/AddPaymentRecord.php?error=PolicyNotInThisAgency");
+           exit();
         }
 
         $sql = "SELECT * FROM Policy WHERE Policy_no = ?";
