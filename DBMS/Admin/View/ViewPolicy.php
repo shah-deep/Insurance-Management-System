@@ -33,7 +33,7 @@ require '../../database.php';
     $Admin_id = $_SESSION['sessionId2'];
     if (isset($_POST['search'])) {
         $Value = $_POST['AgencySearch'];
-        $sql = "SELECT * FROM Policy WHERE Admin_id = $Admin_id AND Agency_code = ?";
+        $sql = "SELECT * FROM Policy NATURAL join Agent WHERE Admin_id = $Admin_id AND Agency_code = ?";
         $stmt = mysqli_stmt_init($conn);
 
         if (mysqli_stmt_prepare($stmt, $sql)) {
@@ -42,7 +42,7 @@ require '../../database.php';
             $result = mysqli_stmt_get_result($stmt);
         }
     } else {
-        $sql = "SELECT * FROM Policy WHERE Admin_id = $Admin_id";
+        $sql = "SELECT * FROM Policy NATURAL join Agent WHERE Admin_id = $Admin_id";
         $result = mysqli_query($conn, $sql);
     }
 
