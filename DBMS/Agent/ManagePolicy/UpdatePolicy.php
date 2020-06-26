@@ -25,7 +25,8 @@ require '../../database.php';
 	    <th>  Operations   </th>
     </tr>
     <?php
-    $sql = "SELECT * FROM policy_holder";
+    $Agency_code = $_SESSION['sessionId'];
+    $sql = "SELECT * FROM policy_holder NATURAL join policy WHERE Agency_code = $Agency_code";
     $result = mysqli_query($conn, $sql);
     $rowCount = mysqli_num_rows($result);
     if ($rowCount>0) {
